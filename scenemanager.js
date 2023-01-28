@@ -20,52 +20,49 @@ class Scenemanager {
         this.currentLevel = level;
 
         if (this.currentLevel === titleScreen) {
-            this.game.addEntity(new TestTitleScreen(this.game));
+            this.game.addEntity(new TitleScreen(this.game));
         }
 
-        if (this.currentLevel === levelOne) {
+        if (this.currentLevel === playGame) {
             this.clearEntities();
-            this.game.addEntity(new SpyCharacter(this.game));
             this.game.addEntity(new HUD(this.game));
-
-            for (let i = 0; i < level.bigTables.length; i++) {
-                let table = level.bigTables[i];
-                this.game.addEntity(new BigTable(this.game, table.x, table.y));
-            }
-
         }
-
-
     };
 
     update() {
-
+        // do nothing
     };
 
     draw(ctx) {
-
+        // do nothing
     };
 }
+
+//-----//
+// HUD //
+//-----//
 
 class HUD {
     constructor(game) {
         this.game = game;
+        this.gameOver = game.gameOver;
+        this.score = 0;
+        this.resetGame = false;
 
         this.mouseBB = new BoundingBox(0,0,1,1);
-        this.butlerBB = new BoundingBox(680 / 3 - 50,8,100,30);
-        this.suitcaseBB = new BoundingBox(680 - (680 / 3) - 60,8,120,30);
+        this.resetBB = new BoundingBox(10,10,100,22);
     };
 
     update() {
+        // update score
+        // show game over box if game over
+
         if (this.game.click) {
             this.mouseBB = new BoundingBox(this.game.click.x, this.game.click.y,1,1);
 
-            if (this.mouseBB.collide(this.butlerBB)) {
-                // do something
-            } else {
-                if (this.mouseBB.collide(this.suitcaseBB)) {
-                    // do something
-                }
+            if (this.mouseBB.collide(this.resetBB)) {
+                this.game.camera.clearEntities();
+                this.game.camera.loadLevel(titleScreen);
             }
 
             this.game.click = null;
@@ -80,28 +77,26 @@ class HUD {
         this.setBlackStroke(ctx);
         ctx.lineWidth = 4;
         ctx.textAlign = "center";
-        ctx.font = "Bold 20px Courier";
+        ctx.font = '15px "Press Start 2P"';
 
         // HUD box
-        ctx.strokeRect(0, 0, 680, 45);
+        ctx.strokeRect(0, 0, 700, 40);
 
-        // butler
-        if (this.mouseBB.collide(this.butlerBB)) {
-            this.setRedStroke(ctx);
+        // score
+        ctx.fillText("Score", 650, 28);
+
+        // reset game
+        if (this.mouseBB.collide(this.resetBB)) {
+            this.setRainbowStroke(ctx, this.resetBB);
         }
-        ctx.fillText("Butler", 680 / 3, 28);
-        ctx.strokeRect(this.butlerBB.left, this.butlerBB.top, this.butlerBB.width, this.butlerBB.height);
+        ctx.fillText("Reset", 60, 28);
+        ctx.strokeRect(this.resetBB.left, this.resetBB.top, this.resetBB.width, this.resetBB.height);
 
-        this.setBlackStroke(ctx);
 
-        // suitcase
-        if (this.mouseBB.collide(this.suitcaseBB)) {
-            this.setRedStroke(ctx);
+        if (this.gameOver) {
+            // draw game over box
+            // draw ok button to exit and reset game
         }
-        ctx.fillText("Suitcase", 680 - (680 / 3), 28);
-        ctx.strokeRect(this.suitcaseBB.left, this.suitcaseBB.top, this.suitcaseBB.width, this.suitcaseBB.height);
-
-        this.setBlackStroke(ctx);
     };
 
     setBlackStroke(ctx) {
@@ -109,20 +104,34 @@ class HUD {
         ctx.fillStyle = "Black";
     };
 
-    setRedStroke(ctx) {
-        ctx.strokeStyle = "rgb(139,0,0)";
-        ctx.fillStyle = "rgb(139,0,0)";
+    setRainbowStroke(ctx, boundingbox) {
+        let BB = boundingbox;
+        let rainbow = ctx.createLinearGradient(BB.left, BB.top, BB.left + BB.width, BB.top + BB.height);
+
+        rainbow.addColorStop(0, "red");
+        rainbow.addColorStop(0.2, "orange");
+        rainbow.addColorStop(0.4, "green");
+        rainbow.addColorStop(0.6, "blue");
+        rainbow.addColorStop(0.8, "indigo");
+        rainbow.addColorStop(1.0, "violet");
+
+        ctx.strokeStyle = rainbow;
+        ctx.fillStyle = rainbow;
     };
 }
 
-class TestTitleScreen {
+//--------------//
+// Title Screen //
+//--------------//
+
+class TitleScreen {
     constructor(game) {
         this.game = game;
 
         this.mouseBB = new BoundingBox(0,0,1,1);
-        this.playBB = new BoundingBox((720 / 2) - 50,(720 / 2) - 45,100,70);
-        this.creditsBB = new BoundingBox((720 / 2) - 85,(720 / 2) + 155,170,70);
-        this.exitBB = new BoundingBox(600 - 50,650 - 45,100,50);
+        this.playBB = new BoundingBox((700 / 2) - 55,(700 / 2) - 38,125,70);
+        this.creditsBB = new BoundingBox((700 / 2) - 90,(700 / 2) + 160,200,70);
+        this.exitBB = new BoundingBox(600 - 62,640 - 38,120,50);
 
         this.credits = false;
     };
@@ -133,7 +142,7 @@ class TestTitleScreen {
 
             if (this.mouseBB.collide(this.playBB)) {
                 this.game.camera.clearEntities();
-                this.game.camera.loadLevel(levelOne);
+                this.game.camera.loadLevel(playGame);
             } else if (this.mouseBB.collide(this.creditsBB)) {
                 this.credits = true;
             } else {
@@ -158,14 +167,14 @@ class TestTitleScreen {
             ctx.textAlign = "center";
 
             //title
-            ctx.font = "Bold 60px Courier";
-            ctx.fillText("Felon For You", 720 / 2, 100);
+            ctx.font = '45px "Press Start 2P"';
+            ctx.fillText("Dinosaur Game", 700 / 2, 100);
 
-            ctx.font = "Bold 35px Courier";
+            ctx.font = '25px "Press Start 2P"';
 
             //play
             if (this.mouseBB.collide(this.playBB)) {
-                this.setRedStroke(ctx);
+                this.setRainbowStroke(ctx, this.playBB);
             }
             ctx.fillText("PLAY", 720 / 2, 720 / 2);
             ctx.strokeRect(this.playBB.left, this.playBB.top, this.playBB.width, this.playBB.height);
@@ -174,7 +183,7 @@ class TestTitleScreen {
 
             //credits
             if (this.mouseBB.collide(this.creditsBB)) {
-                this.setRedStroke(ctx);
+                this.setRainbowStroke(ctx, this.creditsBB);
             }
             ctx.fillText("CREDITS", 720 / 2, 720 / 2 + 200);
             ctx.strokeRect(this.creditsBB.left, this.creditsBB.top, this.creditsBB.width, this.creditsBB.height);
@@ -182,12 +191,12 @@ class TestTitleScreen {
         } else {
             this.setBlackStroke(ctx);
             if (this.mouseBB.collide(this.exitBB)) {
-                this.setRedStroke(ctx);
+                this.setRainbowStroke(ctx, this.exitBB);
             }
 
             ctx.lineWidth = 6;
             ctx.textAlign = "center";
-            ctx.font = "Bold 35px Courier";
+            ctx.font = '25px "Press Start 2P"';
             ctx.fillText("EXIT", 600, 640);
             ctx.strokeRect(this.exitBB.left, this.exitBB.top, this.exitBB.width, this.exitBB.height);
 
@@ -197,16 +206,18 @@ class TestTitleScreen {
             this.setBlackStroke(ctx);
             ctx.lineWidth = 6;
             ctx.textAlign = "center";
-            ctx.font = "Bold 60px Courier";
+            ctx.font = '45px "Press Start 2P"';
             ctx.fillText("CREDITS",720 / 2, 100);
 
             ctx.textAlign = "left";
-            ctx.font = "Bold 35px Courier";
+            ctx.font = '25px "Press Start 2P"';
 
-            ctx.fillText("DEVELOPERS:", 40, 200);
-            ctx.fillText("Maria Babko", 40, 240);
-            ctx.fillText("Chloe Duncan", 40, 280);
-            ctx.fillText("Edwin Solis-Bruno", 40, 320);
+            ctx.fillText("DEVELOPER:", 40, 200);
+            ctx.fillText("\u2615 Chloe Duncan", 40, 240);
+            ctx.fillText("CLASS:", 40, 320);
+            ctx.fillText("\uD83D\uDCBB TCSS 491", 40, 360);
+            ctx.fillText("\u26c4 Winter 2023", 40, 400);
+
         }
     };
 
@@ -215,24 +226,32 @@ class TestTitleScreen {
         ctx.fillStyle = "Black";
     };
 
-    setRedStroke(ctx) {
-        ctx.strokeStyle = "rgb(139,0,0)";
-        ctx.fillStyle = "rgb(139,0,0)";
+    setRainbowStroke(ctx, boundingbox) {
+        let BB = boundingbox;
+        let rainbow = ctx.createLinearGradient(BB.left, BB.top, BB.left + BB.width, BB.top + BB.height);
+
+        rainbow.addColorStop(0, "red");
+        rainbow.addColorStop(0.2, "orange");
+        rainbow.addColorStop(0.4, "green");
+        rainbow.addColorStop(0.6, "blue");
+        rainbow.addColorStop(0.8, "indigo");
+        rainbow.addColorStop(1.0, "violet");
+
+        ctx.strokeStyle = rainbow;
+        ctx.fillStyle = rainbow;
     };
 }
 
-let levelOne = {
-    label: "Phase 1",
-    butler: false,
-    guards: false,
-    bigTables: [{x: 0, y: 11.5}]
+//--------//
+// Levels //
+//--------//
+
+let playGame = {
+    label: "game"
 };
 
 let credits = {
-    label: "credits",
-    text: [
-        "Felon For You"
-    ]
+    label: "credits"
 };
 
 let titleScreen = {
