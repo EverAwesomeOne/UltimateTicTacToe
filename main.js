@@ -11,6 +11,7 @@ ASSET_MANAGER.downloadAll(() => {
 
     gameEngine.init(ctx);
 
+    // scene manager
     new Scenemanager(gameEngine);
 
     gameEngine.start();
