@@ -84,7 +84,7 @@ class HUD {
         ctx.strokeRect(0, 0, 700, 40);
 
         // score
-        ctx.fillText("Score", 650, 28);
+        ctx.fillText("Score <here>", 600, 28);
 
         // reset game
         if (this.mouseBB.collide(this.resetBB)) {
