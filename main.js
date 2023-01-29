@@ -3,7 +3,7 @@ const gameEngine = new GameEngine();
 const ASSET_MANAGER = new AssetManager();
 
 // sprites
-ASSET_MANAGER.queueDownload("./images/dino_original.png");
+ASSET_MANAGER.queueDownload("./images/dino.png");
 
 ASSET_MANAGER.downloadAll(() => {
     const canvas = document.getElementById("gameWorld");

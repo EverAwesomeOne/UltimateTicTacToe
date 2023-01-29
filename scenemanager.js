@@ -26,6 +26,7 @@ class Scenemanager {
         if (this.currentLevel === playGame) {
             this.clearEntities();
             this.game.addEntity(new HUD(this.game));
+            this.game.addEntity(new Dinosaur(this.game));
         }
     };
 
@@ -106,7 +107,11 @@ class HUD {
 
     setRainbowStroke(ctx, boundingbox) {
         let BB = boundingbox;
-        let rainbow = ctx.createLinearGradient(BB.left, BB.top, BB.left + BB.width, BB.top + BB.height);
+        let coordX = BB.left;
+        let coordY = BB.top;
+        let boxW = BB.left + BB.width;
+        let boxH = BB.top + BB.height;
+        let rainbow = ctx.createLinearGradient(coordX, coordY, boxW, boxH);
 
         rainbow.addColorStop(0, "red");
         rainbow.addColorStop(0.2, "orange");
@@ -134,9 +139,18 @@ class TitleScreen {
         this.exitBB = new BoundingBox(600 - 62,640 - 38,120,50);
 
         this.credits = false;
+
+        this.spritesheet = ASSET_MANAGER.getAsset("./images/dino.png");
+        this.dinoRun = new Animator(this.spritesheet, 8, 287, 175, 460-287, 2, 0.15);
+        this.dinoX = -250;
     };
 
     update() {
+        // update dino
+        this.dinoX += 4;
+        if (this.dinoX > 700) this.dinoX = -250;
+
+        // update if user clicks
         if (this.game.click) {
             this.mouseBB = new BoundingBox(this.game.click.x, this.game.click.y,1,1);
 
@@ -154,6 +168,7 @@ class TitleScreen {
             this.game.click = null;
         }
 
+        // update cursor location
         if (this.game.mouse) {
             this.mouseBB = new BoundingBox(this.game.mouse.x, this.game.mouse.y,1,1);
         }
@@ -187,6 +202,9 @@ class TitleScreen {
             }
             ctx.fillText("CREDITS", 720 / 2, 720 / 2 + 200);
             ctx.strokeRect(this.creditsBB.left, this.creditsBB.top, this.creditsBB.width, this.creditsBB.height);
+
+            // draw dino
+            this.dinoRun.drawFrame(this.game.clockTick, ctx, this.dinoX, 720 / 2 - 250);
 
         } else {
             this.setBlackStroke(ctx);
@@ -228,7 +246,11 @@ class TitleScreen {
 
     setRainbowStroke(ctx, boundingbox) {
         let BB = boundingbox;
-        let rainbow = ctx.createLinearGradient(BB.left, BB.top, BB.left + BB.width, BB.top + BB.height);
+        let coordX = BB.left;
+        let coordY = BB.top;
+        let boxW = BB.left + BB.width;
+        let boxH = BB.top + BB.height;
+        let rainbow = ctx.createLinearGradient(coordX, coordY, boxW, boxH);
 
         rainbow.addColorStop(0, "red");
         rainbow.addColorStop(0.2, "orange");
