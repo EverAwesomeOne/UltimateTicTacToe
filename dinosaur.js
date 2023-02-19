@@ -2,7 +2,7 @@ class Dinosaur {
     constructor(game) {
         this.game = game;
 
-        this.spritesheet = ASSET_MANAGER.getAsset("./images/dino.png");
+        this.spritesheet = ASSET_MANAGER.getAsset("./sprites/dino.png");
 
         this.x = 0;
         this.y = 527;

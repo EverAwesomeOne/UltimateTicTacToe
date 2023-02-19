@@ -1,7 +1,6 @@
 class HUD {
     constructor(game) {
         this.game = game;
-        this.gameOver = game.gameOver;
         this.score = 0;
         this.resetGame = false;
 
@@ -11,19 +10,20 @@ class HUD {
 
     update() {
         // update score
-        // show game over box if game over
 
+        // update if user clicks
         if (this.game.click) {
+            // update mouse location
             this.mouseBB = new BoundingBox(this.game.click.x, this.game.click.y,1,1);
 
+            // restart game
             if (this.mouseBB.collide(this.resetBB)) {
-                this.game.camera.clearEntities();
                 this.game.camera.loadLevel(titleScreen);
             }
-
+            // reset user click
             this.game.click = null;
         }
-
+        // update mouse movement
         if (this.game.mouse) {
             this.mouseBB = new BoundingBox(this.game.mouse.x, this.game.mouse.y,1,1);
         }
@@ -47,11 +47,5 @@ class HUD {
         }
         ctx.fillText("Reset", 60, 28);
         ctx.strokeRect(this.resetBB.left, this.resetBB.top, this.resetBB.width, this.resetBB.height);
-
-
-        if (this.gameOver) {
-            // draw game over box
-            // draw ok button to exit and reset game
-        }
     };
 };

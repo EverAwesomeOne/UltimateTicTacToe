@@ -75,7 +75,7 @@ function setBlackStroke(ctx) {
     ctx.fillStyle = "black";
 };
 
-funcion setRainbowStroke(ctx, boundingbox) {
+function setRainbowStroke(ctx, boundingbox) {
     let BB = boundingbox;
     let coordX = BB.left;
     let coordY = BB.top;
