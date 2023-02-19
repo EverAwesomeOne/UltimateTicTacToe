@@ -65,3 +65,31 @@ const PARAMS = {
 const getDistance = (p1, p2) => {
     return Math.sqrt(Math.pow(p2.x - p1.x, 2) + Math.pow(p2.y - p1.y, 2));
 };
+
+//------//
+// TEXT //
+//------//
+
+function setBlackStroke(ctx) {
+    ctx.strokeStyle = "black";
+    ctx.fillStyle = "black";
+};
+
+funcion setRainbowStroke(ctx, boundingbox) {
+    let BB = boundingbox;
+    let coordX = BB.left;
+    let coordY = BB.top;
+    let boxW = BB.left + BB.width;
+    let boxH = BB.top + BB.height;
+    let rainbow = ctx.createLinearGradient(coordX, coordY, boxW, boxH);
+
+    rainbow.addColorStop(0, "red");
+    rainbow.addColorStop(0.2, "orange");
+    rainbow.addColorStop(0.4, "green");
+    rainbow.addColorStop(0.6, "blue");
+    rainbow.addColorStop(0.8, "indigo");
+    rainbow.addColorStop(1.0, "violet");
+
+    ctx.strokeStyle = rainbow;
+    ctx.fillStyle = rainbow;
+};
