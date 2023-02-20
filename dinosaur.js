@@ -99,7 +99,7 @@ class Dinosaur {
         if (this.grounded && this.jumpTimer == 0) {
             this.jumpTimer = 1;
             this.dy = -this.jumpForce;
-        }n 
+        }
 
         else if (this.jumpTimer > 0 && this.jumpTimer < 15) {
             this.jumpTimer++;
