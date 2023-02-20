@@ -1,5 +1,3 @@
-// This game shell was happily modified from Googler Seth Ladd's "Bad Aliens" game and his Google IO talk in 2011
-
 class GameEngine {
     constructor(options) {
         // What you will use to draw
@@ -14,26 +12,20 @@ class GameEngine {
         this.mouse = null;
         this.wheel = null;
 
-        // TODO: maybe use the line below to store the last direction pressed
-        // to make some nice animation features (turn in that direction)
-        //this.lastKey = {};
         this.setKeysNotPressed();
-        this.inCanvas = true; // tells whether in the game area
-        this.lastDirection = 0; // right
+        this.inCanvas = true;
+        this.lastDirection = 0;
 
         // Options and the Details
         this.options = options || {
-            debugging: false,
+            debugging: false
         };
     };
 
     setKeysNotPressed() {
-        this.up = false;
-        this.down = false;
-        this.right = false;
-        this.left = false;
-        this.run = false;
-    }
+        this.jump = false;
+        this.duck = false;
+    };
 
     init(ctx) {
         this.ctx = ctx;
@@ -92,54 +84,22 @@ class GameEngine {
         function keydownListener (e) {
             //e.preventDefault();
             switch (e.code) {
-                case "ShiftLeft":
-                case "ShiftRight":
-                    that.run = true;
+                case "Space":
+                    that.jump = true;
                     break;
-                case "ArrowLeft":
-                case "KeyA":
-                    that.left = true;
-                    that.lastDirection = 2; // left
-                    break;
-                case "ArrowRight":
                 case "KeyD":
-                    that.right = true;
-                    that.lastDirection = 0; // right
-                    break;
-                case "ArrowUp":
-                case "KeyW":
-                    that.up = true;
-                    that.lastDirection = 3; // up
-                    break;
-                case "ArrowDown":
-                case "KeyS":
-                    that.down = true;
-                    that.lastDirection = 1; // down
+                    that.duck = true;
                     break;
             }
         }
         function keyUpListener (e) {
             //e.preventDefault();
             switch (e.code) {
-                case "ShiftLeft":
-                case "ShiftRight":
-                    that.run = false;
+                case "Space":
+                    that.jump = false;
                     break;
-                case "ArrowLeft":
-                case "KeyA":
-                    that.left = false;
-                    break;
-                case "ArrowRight":
                 case "KeyD":
-                    that.right = false;
-                    break;
-                case "ArrowUp":
-                case "KeyW":
-                    that.up = false;
-                    break;
-                case "ArrowDown":
-                case "KeyS":
-                    that.down = false;
+                    that.duck = false;
                     break;
             }
         }
@@ -169,6 +129,7 @@ class GameEngine {
         for (let i = this.entities.length - 1; i >= 0; i--) {
             this.entities[i].draw(this.ctx, this);
         }
+        this.camera.draw(this.ctx);
     };
 
     update() {
@@ -181,6 +142,7 @@ class GameEngine {
                 entity.update();
             }
         }
+        this.camera.update();
 
         for (let i = this.entities.length - 1; i >= 0; --i) {
             if (this.entities[i].removeFromWorld) {
@@ -194,17 +156,4 @@ class GameEngine {
         this.update();
         this.draw();
     };
-
-    // this.up = false;
-    // this.down = false;
-    // this.right = false;
-
-    disableLeft() {
-        this.left = false;
-        this.run = false;
-    }
-
-
-}
-
-// KV Le was here :)
+};

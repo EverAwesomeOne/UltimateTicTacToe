@@ -10,6 +10,7 @@ class HUD {
 
     update() {
         // update score
+        this.score += 5;
 
         // update if user clicks
         if (this.game.click) {
@@ -39,7 +40,7 @@ class HUD {
         ctx.strokeRect(0, 0, 700, 40);
 
         // score
-        ctx.fillText("Score <here>", 600, 28);
+        ctx.fillText("Score " + this.score, 600, 28);
 
         // reset game
         if (this.mouseBB.collide(this.resetBB)) {

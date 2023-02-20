@@ -5,15 +5,25 @@ class Dinosaur {
         this.spritesheet = ASSET_MANAGER.getAsset("./sprites/dino.png");
 
         this.x = 0;
-        this.y = 527;
+        this.y = 180;
+        this.h = 180;
 
         this.direction = 0;
         this.state = 0;
 
+        // dino bounding box
         this.updateBB();
 
+        // dino animations
         this.animations = [];
         this.loadAnimations();
+
+        // physics variables
+        this.gravity = 1;
+        this.dy = 0;
+        this.jumpForce = 15;
+        this.originalheight = this.h;
+        this.grounded = false;
     };
 
     loadAnimations() {
@@ -38,8 +48,6 @@ class Dinosaur {
 
         // state = 4 is the dead animation
         this.animations[4][0] = new Animator(this.spritesheet, 196, 55, 356-196, 228-55, 1, 0.2);
-
-
     };
 
     updateBB() {
@@ -47,16 +55,35 @@ class Dinosaur {
     };
 
     update() {
-        //movement
-        if (!this.game.up && !this.game.down && !this.game.left && !this.game.right) {
-            this.state = 0; // idle
-        } else {
-            if (this.game.right) {
-                this.state = 1;
-                this.x += 4;
-            }
+        // run
+        if (!this.game.jump && !this.game.duck) {
+            this.state = 1;
+            this.x += 4;
         }
 
+        // duck
+        if (this.game.duck) {
+            console.log("duck");
+        }
+
+        // jump
+        if (this.game.jump) {
+            this.jump();
+        } else {
+            this.jumpTimer = 0;
+        }
+
+        this.y += this.dy;
+
+        // gravity
+        if (this.y + this.h < PARAMS.CANVAS_HEIGHT) {
+            this.dy += this.gravity;
+            this.grounded = false;
+        } else {
+            this.dy = 0;
+            this.grounded = true;
+            this.y = PARAMS.CANVAS_HEIGHT - this.h;
+        }
 
         //Update position
         this.updateBB();
@@ -67,6 +94,19 @@ class Dinosaur {
         if (this.y > 700) this.y = 0;
         if (this.y < 0) this.y = 700;
     };
+
+    jump() {
+        if (this.grounded && this.jumpTimer == 0) {
+            this.jumpTimer = 1;
+            this.dy = -this.jumpForce;
+        }n 
+
+        else if (this.jumpTimer > 0 && this.jumpTimer < 15) {
+            this.jumpTimer++;
+            this.dy = -this.jumpForce - (this.jumpTimer / 50);
+        }
+    };
+
     draw(ctx) {
         // info box
         ctx.textAlign = "left";
@@ -78,10 +118,10 @@ class Dinosaur {
         ctx.fillText("Eventually there will only be jump and duck", 5, 120);
         ctx.fillText("movement.", 5, 150);
 
-
         // dino
         this.animations[this.state][this.direction].drawFrame(this.game.clockTick, ctx, this.x, this.y);
 
+        // debug
         PARAMS.DEBUG = document.getElementById("debug").checked;
         if (PARAMS.DEBUG) {
             ctx.strokeStyle = 'Red';
