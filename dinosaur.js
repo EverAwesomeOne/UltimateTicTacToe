@@ -113,10 +113,8 @@ class Dinosaur {
         ctx.font = '15px "Press Start 2P"';
         ctx.strokeStyle = "Black";
         ctx.fillStyle = "Black";
-        ctx.fillText("Dino can only move right.", 5, 60);
-        ctx.fillText("Use arrow or 'd' key to move right.", 5, 90);
-        ctx.fillText("Eventually there will only be jump and duck", 5, 120);
-        ctx.fillText("movement.", 5, 150);
+        ctx.fillText("Dino runs automatically.", 5, 60);
+        ctx.fillText("Use space bar to jump.", 5, 90);
 
         // dino
         this.animations[this.state][this.direction].drawFrame(this.game.clockTick, ctx, this.x, this.y);
