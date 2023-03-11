@@ -32,7 +32,7 @@ class Scenemanager {
 
         if (this.currentLevel === playGame) {
             this.game.addEntity(new HUD(this.game));
-            this.game.addEntity(new Dinosaur(this.game));
+            this.game.addEntity(new TicTacToe(this.game));
         }
     };
 

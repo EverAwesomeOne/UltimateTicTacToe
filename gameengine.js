@@ -23,8 +23,7 @@ class GameEngine {
     };
 
     setKeysNotPressed() {
-        this.jump = false;
-        this.duck = false;
+        //
     };
 
     init(ctx) {
@@ -118,7 +117,21 @@ class GameEngine {
     };
 
     addEntity(entity) {
+        for (let i = 0; i < this.entities.length; i++) {
+            if (this.entities[i] === entity) {
+                console.log(this.entities.splice(i, 1));
+            }
+        }
         this.entities.push(entity);
+    };
+
+    addEntityToTop(entity) {
+        for (let i = 0; i < this.entities.length; i++) {
+            if (this.entities[i] === entity) {
+                console.log(this.entities.splice(i, 1));
+            }
+        }
+        this.entities.unshift(entity) ;
     };
 
     draw() {
@@ -156,4 +169,4 @@ class GameEngine {
         this.update();
         this.draw();
     };
-};
+}

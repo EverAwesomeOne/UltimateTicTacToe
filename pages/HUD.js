@@ -10,7 +10,7 @@ class HUD {
 
     update() {
         // update score
-        this.score += 5;
+        //this.score += 5;
 
         // update if user clicks
         if (this.game.click) {
