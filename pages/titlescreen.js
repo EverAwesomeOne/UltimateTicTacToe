@@ -34,6 +34,10 @@ class TitleScreen {
     };
 
     draw(ctx) {
+        // draw background
+        let background = ASSET_MANAGER.getAsset("./images/titlescreenbackground.png");
+        ctx.drawImage(background, 0, 0, PARAMS.CANVAS_WIDTH, PARAMS.CANVAS_HEIGHT);
+
         // display title screen
         setBlackStroke(ctx);
         ctx.lineWidth = 6;
