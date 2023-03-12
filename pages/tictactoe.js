@@ -13,6 +13,556 @@ class TicTacToe {
         this.enableCells();
     };
 
+    update() {
+        // determine win, tie, lose
+        this.determineWin();
+        this.determineTie();
+
+        // update if user clicks
+        if (this.game.click) {
+            // update mouse location
+            this.mouseBB = new BoundingBox(this.game.click.x, this.game.click.y, 1, 1);
+
+            this.updateCell0();
+            this.updateCell1();
+
+            // reset user click
+            this.game.click = null;
+        }
+
+        // update mouse movement
+        if (this.game.mouse) {
+            this.mouseBB = new BoundingBox(this.game.mouse.x, this.game.mouse.y, 1, 1);
+        }
+
+        this.setPlayer();
+    };
+
+    updateCell8() {
+
+    };
+
+    updateCell7() {
+
+    };
+
+    updateCell6() {
+
+    };
+
+    updateCell5() {
+
+    };
+
+    updateCell4() {
+
+    };
+
+    updateCell3() {
+
+    };
+
+    updateCell2() {
+
+    };
+
+    updateCell1() {
+        // Cell 1
+        if (this.mouseBB.collide(this.cell1)) {
+            this.disableHints();
+            // Cell 10
+            if (this.mouseBB.collide(this.cell1.cell0) && this.playableCell10) {
+                this.playableCell10 = false;
+                this.cX10 = this.X;
+                this.hint10 = true;
+                this.turnCount++;
+            }
+            // Cell 11
+            else if (this.mouseBB.collide(this.cell1.cell1) && this.playableCell11) {
+                this.playableCell11 = false;
+                this.cX11 = this.X;
+                this.hint11 = true;
+                this.turnCount++;
+            }
+            // Cell 12
+            else if (this.mouseBB.collide(this.cell1.cell2) && this.playableCell12) {
+                this.playableCell12 = false;
+                this.cX12 = this.X;
+                this.hint12 = true;
+                this.turnCount++;
+            }
+            // Cell 13
+            else if (this.mouseBB.collide(this.cell1.cell3) && this.playableCell13) {
+                this.playableCell13 = false;
+                this.cX13 = this.X;
+                this.hint13 = true;
+                this.turnCount++;
+            }
+            // Cell 14
+            else if (this.mouseBB.collide(this.cell1.cell4) && this.playableCell14) {
+                this.playableCell14 = false;
+                this.cX14 = this.X;
+                this.hint14 = true;
+                this.turnCount++;
+            }
+            // Cell 15
+            else if (this.mouseBB.collide(this.cell1.cell5) && this.playableCell15) {
+                this.playableCell15 = false;
+                this.cX15 = this.X;
+                this.hint15 = true;
+                this.turnCount++;
+            }
+            // Cell 16
+            else if (this.mouseBB.collide(this.cell1.cell6) && this.playableCell16) {
+                this.playableCell16 = false;
+                this.cX16 = this.X;
+                this.hint16 = true;
+                this.turnCount++;
+            }
+            // Cell 17
+            else if (this.mouseBB.collide(this.cell1.cell7) && this.playableCell17) {
+                this.playableCell17 = false;
+                this.cX17 = this.X;
+                this.hint17 = true;
+                this.turnCount++;
+            }
+            // Cell 18
+            else if (this.mouseBB.collide(this.cell1.cell8) && this.playableCell18) {
+                this.playableCell18 = false;
+                this.cX18 = this.X;
+                this.hint18 = true;
+                this.turnCount++;
+            }
+        }
+    };
+
+    updateCell0() {
+        // Cell 0
+        if (this.mouseBB.collide(this.cell0)) {
+            this.disableHints();
+            // Cell 00
+            if (this.mouseBB.collide(this.cell0.cell0) && this.playableCell00) {
+                this.playableCell00 = false;
+                this.cX00 = this.X;
+                this.hint00 = true;
+                this.turnCount++;
+            }
+            // Cell 01
+            else if (this.mouseBB.collide(this.cell0.cell1) && this.playableCell01) {
+                this.playableCell01 = false;
+                this.cX01 = this.X;
+                this.hint01 = true;
+                this.turnCount++;
+            }
+            // Cell 02
+            else if (this.mouseBB.collide(this.cell0.cell2) && this.playableCell02) {
+                this.playableCell02 = false;
+                this.cX02 = this.X;
+                this.hint02 = true;
+                this.turnCount++;
+            }
+            // Cell 03
+            else if (this.mouseBB.collide(this.cell0.cell3) && this.playableCell03) {
+                this.playableCell03 = false;
+                this.cX03 = this.X;
+                this.hint03 = true;
+                this.turnCount++;
+            }
+            // Cell 04
+            else if (this.mouseBB.collide(this.cell0.cell4) && this.playableCell04) {
+                this.playableCell04 = false;
+                this.cX04 = this.X;
+                this.hint04 = true;
+                this.turnCount++;
+            }
+            // Cell 05
+            else if (this.mouseBB.collide(this.cell0.cell5) && this.playableCell05) {
+                this.playableCell05 = false;
+                this.cX05 = this.X;
+                this.hint05 = true;
+                this.turnCount++;
+            }
+            // Cell 06
+            else if (this.mouseBB.collide(this.cell0.cell6) && this.playableCell06) {
+                this.playableCell06 = false;
+                this.cX06 = this.X;
+                this.hint06 = true;
+                this.turnCount++;
+            }
+            // Cell 07
+            else if (this.mouseBB.collide(this.cell0.cell7) && this.playableCell07) {
+                this.playableCell07 = false;
+                this.cX07 = this.X;
+                this.hint07 = true;
+                this.turnCount++;
+            }
+            // Cell 08
+            else if (this.mouseBB.collide(this.cell0.cell8) && this.playableCell08) {
+                this.playableCell08 = false;
+                this.cX08 = this.X;
+                this.hint08 = true;
+                this.turnCount++;
+            }
+        }
+    };
+
+    draw(ctx) {
+        // draw which player's turn
+        setCustomStroke(ctx, "black");
+        let turnText = this.setTurnDisplayText();
+        ctx.fillText(turnText, PARAMS.CANVAS_WIDTH / 2, PARAMS.CANVAS_HEIGHT - 8);
+
+        // draw gameboard
+        this.drawBoard(ctx);
+
+        // on first turn, hint player can go anywhere for first move
+        if (this.turnCount === 1) {
+            setCustomStroke(ctx, "black");
+            this.playAnywhere(ctx);
+        }
+
+        // fill cell with user's play
+        this.fillInCell(ctx);
+
+        // mark large cell if won that cell
+        if (this.winC0) {
+            this.drawWin(ctx, this.cell0, this.winType);
+            this.disableCell0();
+            this.cell0.win = this.winType;
+            console.log(this.cell0.win);
+        } else if (this.tieC0 && !this.winC0) {
+            this.drawWin(ctx, this.cell0, 0);
+            this.drawWin(ctx, this.cell0, 1);
+        }
+
+        if (this.winC1) {
+            this.drawWin(ctx, this.cell1, this.winType);
+            this.disableCell1();
+            this.cell1.win = this.winType;
+            console.log(this.cell1.win);
+        } else if (this.tieC1 && !this.winC1) {
+            this.drawWin(ctx, this.cell1, 0);
+            this.drawWin(ctx, this.cell1, 1);
+        }
+    };
+
+
+
+
+    //--------------------FILL IN BOARD--------------------
+    drawWin(ctx, cell, winType) {
+        setCustomStroke(ctx, "black");
+        ctx.beginPath();
+        if (winType) {
+            ctx.moveTo(cell.x, cell.y);
+            ctx.lineTo(cell.x + cell.width, cell.y + cell.height);
+            ctx.moveTo(cell.x, cell.y + cell.height);
+            ctx.lineTo(cell.x + cell.width, cell.y);
+        }  else if (!winType) {
+            let radius = 90;
+            ctx.arc(cell.x + cell.width / 2, cell.y + cell.height / 2, radius, 0, 2 * Math.PI, false);
+        }
+        ctx.stroke();
+    };
+
+    fillInCell(ctx) {
+        // CELL 0
+        if (!this.playableCell00) {
+            this.drawTurn(ctx, this.cell0.cell0, this.cX00);
+            if (this.hint00) {
+                this.playInCell(ctx, this.cell0, 200);
+            }
+        } if (!this.playableCell01) {
+            this.drawTurn(ctx, this.cell0.cell1, this.cX01);
+            if (this.hint01) {
+                this.playInCell(ctx, this.cell1, 200);
+            }
+        } if (!this.playableCell02) {
+            this.drawTurn(ctx, this.cell0.cell2, this.cX02);
+            if (this.hint02) {
+                this.playInCell(ctx, this.cell2, 200);
+            }
+        } if (!this.playableCell03) {
+            this.drawTurn(ctx, this.cell0.cell3, this.cX03);
+            if (this.hint03) {
+                this.playInCell(ctx, this.cell3, 200);
+            }
+        } if (!this.playableCell04) {
+            this.drawTurn(ctx, this.cell0.cell4, this.cX04);
+            if (this.hint04) {
+                this.playInCell(ctx, this.cell4, 200);
+            }
+        } if (!this.playableCell05) {
+            this.drawTurn(ctx, this.cell0.cell5, this.cX05);
+            if (this.hint05) {
+                this.playInCell(ctx, this.cell5, 200);
+            }
+        } if (!this.playableCell06) {
+            this.drawTurn(ctx, this.cell0.cell6, this.cX06);
+            if (this.hint06) {
+                this.playInCell(ctx, this.cell6, 200);
+            }
+        } if (!this.playableCell07) {
+            this.drawTurn(ctx, this.cell0.cell7, this.cX07);
+            if (this.hint07) {
+                this.playInCell(ctx, this.cell7, 200);
+            }
+        } if (!this.playableCell08) {
+            this.drawTurn(ctx, this.cell0.cell8, this.cX08);
+            if (this.hint08) {
+                this.playInCell(ctx, this.cell8, 200);
+            }
+        }
+        // CELL 1
+        if (!this.playableCell10) {
+            this.drawTurn(ctx, this.cell1.cell0, this.cX10);
+            if (this.hint10) {
+                this.playInCell(ctx, this.cell0, 200);
+            }
+        } if (!this.playableCell11) {
+            this.drawTurn(ctx, this.cell1.cell1, this.cX11);
+            if (this.hint11) {
+                this.playInCell(ctx, this.cell1, 200);
+            }
+        } if (!this.playableCell12) {
+            this.drawTurn(ctx, this.cell1.cell2, this.cX12);
+            if (this.hint12) {
+                this.playInCell(ctx, this.cell2, 200);
+            }
+        } if (!this.playableCell13) {
+            this.drawTurn(ctx, this.cell1.cell3, this.cX13);
+            if (this.hint13) {
+                this.playInCell(ctx, this.cell3, 200);
+            }
+        } if (!this.playableCell14) {
+            this.drawTurn(ctx, this.cell1.cell4, this.cX14);
+            if (this.hint14) {
+                this.playInCell(ctx, this.cell4, 200);
+            }
+        } if (!this.playableCell15) {
+            this.drawTurn(ctx, this.cell1.cell5, this.cX15);
+            if (this.hint15) {
+                this.playInCell(ctx, this.cell5, 200);
+            }
+        } if (!this.playableCell16) {
+            this.drawTurn(ctx, this.cell1.cell6, this.cX16);
+            if (this.hint16) {
+                this.playInCell(ctx, this.cell6, 200);
+            }
+        } if (!this.playableCell17) {
+            this.drawTurn(ctx, this.cell1.cell7, this.cX17);
+            if (this.hint17) {
+                this.playInCell(ctx, this.cell7, 200);
+            }
+        } if (!this.playableCell18) {
+            this.drawTurn(ctx, this.cell1.cell8, this.cX18);
+            if (this.hint18) {
+                this.playInCell(ctx, this.cell8, 200);
+            }
+        }
+        // CELL 2
+        // CELL 3
+        // CELL 4
+        // CELL 5
+        // CELL 6
+        // CELL 7
+        // CELL 8
+    };
+
+    drawTurn(ctx, cell, X) {
+        setCustomStroke(ctx, "black");
+        ctx.beginPath();
+        if (X === 1) {
+            ctx.moveTo(cell.x + 10, cell.y + 10);
+            ctx.lineTo(cell.x + cell.width - 10, cell.y + cell.height - 10);
+            ctx.moveTo(cell.x + 10, cell.y + cell.height - 10);
+            ctx.lineTo(cell.x + cell.width - 10, cell.y + 10);
+        } else if (X === 0) {
+            let radius = 20;
+            ctx.arc(cell.x + cell.width / 2, cell.y + cell.height / 2, radius, 0, 2 * Math.PI, false);
+        }
+        ctx.stroke();
+    };
+
+
+
+
+    //--------------------SET WHO IS PLAYING--------------------
+    setPlayer() {
+        if (this.turnCount % 2 === 0) {
+            this.X = 0;
+        } else {
+            this.X = 1;
+        }
+    };
+
+    setTurnDisplayText() {
+        let playerXText = "Player X's Turn!";
+        let playerOText = "Player O's Turn!";
+
+        if (this.X === 1) {
+            return playerXText;
+        } else {
+            return playerOText;
+        }
+    };
+
+
+
+
+    //--------------------DETERMINE GAME STATUS--------------------
+    determineWin() {
+        // CELL 0
+        // horiz wins
+        if (((this.cX00 == 0) && (this.cX01 == 0) && (this.cX02 == 0)) || (this.cX00 && this.cX01 && this.cX02)) {
+            this.winC0 = true;
+            this.winType = this.cX00;
+        }
+        if (((this.cX03 == 0) && (this.cX04 == 0) && (this.cX05 == 0)) || (this.cX03 && this.cX04 && this.cX05)) {
+            this.winC0 = true;
+            this.winType = this.cX03;
+        }
+        if (((this.cX06 == 0) && (this.cX07 == 0) && (this.cX08 == 0)) || (this.cX06 && this.cX07 && this.cX08)) {
+            this.winC0 = true;
+            this.winType = this.cX06;
+        }
+        // vert wins
+        if (((this.cX00 == 0) && (this.cX03 == 0) && (this.cX06 == 0)) || (this.cX00 && this.cX03 && this.cX06)) {
+            this.winC0 = true;
+            this.winType = this.cX00;
+        }
+        if (((this.cX01 == 0) && (this.cX04 == 0) && (this.cX07 == 0)) || (this.cX01 && this.cX04 && this.cX07)) {
+            this.winC0 = true;
+            this.winType = this.cX01;
+        }
+        if (((this.cX02 == 0) && (this.cX05 == 0) && (this.cX08 == 0)) || (this.cX02 && this.cX05 && this.cX08)) {
+            this.winC0 = true;
+            this.winType = this.cX02;
+        }
+        // // diagonal wins
+        if (((this.cX00 == 0) && (this.cX04 == 0) && (this.cX08 == 0)) || (this.cX00 && this.cX04 && this.cX08)) {
+            this.winC0 = true;
+            this.winType = this.cX00;
+        }
+        if (((this.cX06 == 0) && (this.cX04 == 0) && (this.cX02 == 0)) || (this.cX06 && this.cX04 && this.cX02)) {
+            this.winC0 = true;
+            this.winType = this.cX06;
+        }
+
+        // CELL 1
+        // horiz wins
+        if (((this.cX10 == 0) && (this.cX11 == 0) && (this.cX12 == 0)) || (this.cX10 && this.cX11 && this.cX12)) {
+            this.winC1 = true;
+            this.winType = this.cX10;
+        }
+        if (((this.cX13 == 0) && (this.cX14 == 0) && (this.cX15 == 0)) || (this.cX13 && this.cX14 && this.cX15)) {
+            this.winC1 = true;
+            this.winType = this.cX13;
+        }
+        if (((this.cX16 == 0) && (this.cX17 == 0) && (this.cX18 == 0)) || (this.cX16 && this.cX17 && this.cX18)) {
+            this.winC1 = true;
+            this.winType = this.cX16;
+        }
+        // vert wins
+        if (((this.cX10 == 0) && (this.cX13 == 0) && (this.cX16 == 0)) || (this.cX10 && this.cX13 && this.cX16)) {
+            this.winC1 = true;
+            this.winType = this.cX10;
+        }
+        if (((this.cX11 == 0) && (this.cX14 == 0) && (this.cX17 == 0)) || (this.cX11 && this.cX14 && this.cX17)) {
+            this.winC1 = true;
+            this.winType = this.cX11;
+        }
+        if (((this.cX12 == 0) && (this.cX15 == 0) && (this.cX18 == 0)) || (this.cX12 && this.cX15 && this.cX18)) {
+            this.winC1 = true;
+            this.winType = this.cX12;
+        }
+        // // diagonal wins
+        if (((this.cX10 == 0) && (this.cX14 == 0) && (this.cX18 == 0)) || (this.cX10 && this.cX14 && this.cX18)) {
+            this.winC1 = true;
+            this.winType = this.cX10;
+        }
+        if (((this.cX16 == 0) && (this.cX14 == 0) && (this.cX12 == 0)) || (this.cX16 && this.cX14 && this.cX12)) {
+            this.winC1 = true;
+            this.winType = this.cX16;
+        }
+
+        // CELL 2
+        // CELL 3
+        // CELL 4
+        // CELL 5
+        // CELL 6
+        // CELL 7
+        // CELL 8
+    };
+
+    determineTie() {
+        // CELL 0
+        if (this.playableCell00 === false && this.playableCell01 === false && this.playableCell02 === false &&
+            this.playableCell03 === false && this.playableCell04 === false && this.playableCell05 === false &&
+            this.playableCell06 === false && this.playableCell07 === false && this.playableCell08 === false &&
+            !Number.isNaN(this.playableCell00)) {
+            this.tieC0 = true;
+        }
+        // CELL 1
+        if (this.playableCell10 === false && this.playableCell11 === false && this.playableCell12 === false &&
+            this.playableCell13 === false && this.playableCell14 === false && this.playableCell15 === false &&
+            this.playableCell16 === false && this.playableCell17 === false && this.playableCell18 === false &&
+            !Number.isNaN(this.playableCell10)) {
+            this.tieC1 = true;
+        }
+        // CELL 2
+        // CELL 3
+        // CELL 4
+        // CELL 5
+        // CELL 6
+        // CELL 7
+        // CELL 8
+    };
+
+
+
+
+    //--------------------GAME HINTS--------------------
+    disableHints() {
+        // CELL 0
+        this.hint00 = false;
+        this.hint01 = false;
+        this.hint02 = false;
+        this.hint03 = false;
+        this.hint04 = false;
+        this.hint05 = false;
+        this.hint06 = false;
+        this.hint07 = false;
+        this.hint08 = false;
+        // CELL 1
+        this.hint10 = false;
+        this.hint11 = false;
+        this.hint12 = false;
+        this.hint13 = false;
+        this.hint14 = false;
+        this.hint15 = false;
+        this.hint16 = false;
+        this.hint17 = false;
+        this.hint18 = false;
+    };
+
+    // player help
+    playAnywhere(ctx) {
+        let playHereBB = new BoundingBox(this.rowX, this.rowY, 600, 600);
+        setRainbowStroke(ctx, playHereBB);
+        ctx.strokeRect(this.rowX, this.rowY, 600, 600);
+    };
+
+    playInCell(ctx, cell, dimension) {
+        let playHereBB = new BoundingBox(cell.x, cell.y, dimension, dimension);
+        setRainbowStroke(ctx, playHereBB);
+        ctx.strokeRect(cell.x, cell.y, dimension, dimension);
+    };
+
+
+
+
+    //--------------------GAME BOARD--------------------
     createBoard() {
         // row 1
         this.cell0 = new BoundingBox(this.rowX, this.rowY, 200, 200);
@@ -65,297 +615,6 @@ class TicTacToe {
         cell.cell8 = new BoundingBox(c3X, r3Y, 200 / 3, 200 / 3);
     };
 
-    enableCells() {
-        this.playableCell00 = true;
-        this.playableCell01 = true;
-        this.playableCell02 = true;
-        this.playableCell03 = true;
-        this.playableCell04 = true;
-        this.playableCell05 = true;
-        this.playableCell06 = true;
-        this.playableCell07 = true;
-        this.playableCell08 = true;
-
-        this.playableCell10 = true;
-        this.playableCell11 = true;
-        this.playableCell12 = true;
-        this.playableCell13 = true;
-        this.playableCell14 = true;
-        this.playableCell15 = true;
-        this.playableCell16 = true;
-        this.playableCell17 = true;
-        this.playableCell18 = true;
-
-        this.playableCell20 = true;
-        this.playableCell21 = true;
-        this.playableCell22 = true;
-        this.playableCell23 = true;
-        this.playableCell24 = true;
-        this.playableCell25 = true;
-        this.playableCell26 = true;
-        this.playableCell27 = true;
-        this.playableCell28 = true;
-    }
-
-    disableCell0() {
-        this.playableCell00 = false;
-        this.playableCell01 = false;
-        this.playableCell02 = false;
-        this.playableCell03 = false;
-        this.playableCell04 = false;
-        this.playableCell05 = false;
-        this.playableCell06 = false;
-        this.playableCell07 = false;
-        this.playableCell08 = false;
-    };
-
-    disableCell1() {
-        this.playableCell10 = false;
-        this.playableCell11 = false;
-        this.playableCell12 = false;
-        this.playableCell13 = false;
-        this.playableCell14 = false;
-        this.playableCell15 = false;
-        this.playableCell16 = false;
-        this.playableCell17 = false;
-        this.playableCell18 = false;
-    };
-
-    disableCell2() {
-        this.playableCell20 = false;
-        this.playableCell21 = false;
-        this.playableCell22 = false;
-        this.playableCell23 = false;
-        this.playableCell24 = false;
-        this.playableCell25 = false;
-        this.playableCell26 = false;
-        this.playableCell27 = false;
-        this.playableCell28 = false;
-    };
-
-    update() {
-        // determine win, tie, lose
-        this.determineWin();
-        this.determineTie();
-
-        // update if user clicks
-        if (this.game.click) {
-            // update mouse location
-            this.mouseBB = new BoundingBox(this.game.click.x, this.game.click.y, 1, 1);
-
-            // Cell 0
-            if (this.mouseBB.collide(this.cell0)) {
-                // Cell 00
-                if (this.mouseBB.collide(this.cell0.cell0) && this.playableCell00) {
-                    this.playableCell00 = false;
-                    this.cX00 = this.X;
-                    this.turnCount++;
-                }
-                // Cell 01
-                else if (this.mouseBB.collide(this.cell0.cell1) && this.playableCell01) {
-                    this.playableCell01 = false;
-                    this.cX01 = this.X;
-                    this.turnCount++;
-                }
-                // Cell 02
-                else if (this.mouseBB.collide(this.cell0.cell2) && this.playableCell02) {
-                    this.playableCell02 = false;
-                    this.cX02 = this.X;
-                    this.turnCount++;
-                }
-                // Cell 03
-                else if (this.mouseBB.collide(this.cell0.cell3) && this.playableCell03) {
-                    this.playableCell03 = false;
-                    this.cX03 = this.X;
-                    this.turnCount++;
-                }
-                // Cell 04
-                else if (this.mouseBB.collide(this.cell0.cell4) && this.playableCell04) {
-                    this.playableCell04 = false;
-                    this.cX04 = this.X;
-                    this.turnCount++;
-                }
-                // Cell 05
-                else if (this.mouseBB.collide(this.cell0.cell5) && this.playableCell05) {
-                    this.playableCell05 = false;
-                    this.cX05 = this.X;
-                    this.turnCount++;
-                }
-                // Cell 06
-                else if (this.mouseBB.collide(this.cell0.cell6) && this.playableCell06) {
-                    this.playableCell06 = false;
-                    this.cX06 = this.X;
-                    this.turnCount++;
-                }
-                // Cell 07
-                else if (this.mouseBB.collide(this.cell0.cell7) && this.playableCell07) {
-                    this.playableCell07 = false;
-                    this.cX07 = this.X;
-                    this.turnCount++;
-                }
-                // Cell 08
-                else if (this.mouseBB.collide(this.cell0.cell8) && this.playableCell08) {
-                    this.playableCell08 = false;
-                    this.cX08 = this.X;
-                    this.turnCount++;
-                }
-            }
-
-            // reset user click
-            this.game.click = null;
-        }
-
-        // update mouse movement
-        if (this.game.mouse) {
-            this.mouseBB = new BoundingBox(this.game.mouse.x, this.game.mouse.y, 1, 1);
-        }
-
-        this.setPlayer();
-    };
-
-    setPlayer() {
-        if (this.turnCount % 2 === 0) {
-            this.X = 0;
-        } else {
-            this.X = 1;
-        }
-    };
-
-    setTurnDisplayText() {
-        let playerXText = "Player X's Turn!";
-        let playerOText = "Player O's Turn!";
-
-        if (this.X === 1) {
-            return playerXText;
-        } else {
-            return playerOText;
-        }
-    };
-
-    determineWin() {
-        // CELL 0
-        // horiz wins
-        if (((this.cX00 == 0) && (this.cX01 == 0) && (this.cX02 == 0)) || (this.cX00 && this.cX01 && this.cX02)) {
-            this.winC0 = true;
-            this.winType = this.cX00;
-        }
-        if (((this.cX03 == 0) && (this.cX04 == 0) && (this.cX05 == 0)) || (this.cX03 && this.cX04 && this.cX05)) {
-            this.winC0 = true;
-            this.winType = this.cX03;
-        }
-        if (((this.cX06 == 0) && (this.cX07 == 0) && (this.cX08 == 0)) || (this.cX06 && this.cX07 && this.cX08)) {
-            this.winC0 = true;
-            this.winType = this.cX06;
-        }
-        // vert wins
-        if (((this.cX00 == 0) && (this.cX03 == 0) && (this.cX06 == 0)) || (this.cX00 && this.cX03 && this.cX06)) {
-            this.winC0 = true;
-            this.winType = this.cX00;
-        }
-        if (((this.cX01 == 0) && (this.cX04 == 0) && (this.cX07 == 0)) || (this.cX01 && this.cX04 && this.cX07)) {
-            this.winC0 = true;
-            this.winType = this.cX01;
-        }
-        if (((this.cX02 == 0) && (this.cX05 == 0) && (this.cX08 == 0)) || (this.cX02 && this.cX05 && this.cX08)) {
-            this.winC0 = true;
-            this.winType = this.cX02;
-        }
-        // // diagonal wins
-        if (((this.cX00 == 0) && (this.cX04 == 0) && (this.cX08 == 0)) || (this.cX00 && this.cX04 && this.cX08)) {
-            this.winC0 = true;
-            this.winType = this.cX00;
-        }
-        if (((this.cX06 == 0) && (this.cX04 == 0) && (this.cX02 == 0)) || (this.cX06 && this.cX04 && this.cX02)) {
-            this.winC0 = true;
-            this.winType = this.cX06;
-        }
-
-        // CELL 1
-        // CELL 2
-        // CELL 3
-        // CELL 4
-        // CELL 5
-        // CELL 6
-        // CELL 7
-        // CELL 8
-    };
-
-    determineTie() {
-        if (this.playableCell00 === false && this.playableCell01 === false && this.playableCell02 === false &&
-            this.playableCell03 === false && this.playableCell04 === false && this.playableCell05 === false &&
-            this.playableCell06 === false && this.playableCell07 === false && this.playableCell08 === false &&
-            !Number.isNaN(this.playableCell00)) {
-            this.tieC0 = true;
-            console.log("tie")
-        }
-    };
-
-    draw(ctx) {
-        // draw which player's turn
-        setCustomStroke(ctx, "black");
-        let turnText = this.setTurnDisplayText();
-        ctx.fillText(turnText, PARAMS.CANVAS_WIDTH / 2, PARAMS.CANVAS_HEIGHT - 8);
-
-        // draw gameboard
-        this.drawBoard(ctx);
-
-        // on first turn, hint player can go anywhere for first move
-        if (this.turnCount === 1) {
-            setCustomStroke(ctx, "black");
-            this.playAnywhere(ctx);
-        }
-
-        // fill cell with user's play
-        this.fillInCell(ctx);
-
-        // mark large cell if won that cell
-        if (this.winC0) {
-            this.drawWin(ctx, this.cell0, this.winType);
-            this.disableCell0();
-        }
-
-        if (this.tieC0) {
-            this.drawWin(ctx, this.cell0, 0);
-            this.drawWin(ctx, this.cell0, 1);
-        }
-    };
-
-    drawWin(ctx, cell, winType) {
-        ctx.beginPath();
-        if (winType) {
-            ctx.moveTo(cell.x, cell.y);
-            ctx.lineTo(cell.x + cell.width, cell.y + cell.height);
-            ctx.moveTo(cell.x, cell.y + cell.height);
-            ctx.lineTo(cell.x + cell.width, cell.y);
-        }  else if (!winType) {
-            let radius = 90;
-            ctx.arc(cell.x + cell.width / 2, cell.y + cell.height / 2, radius, 0, 2 * Math.PI, false);
-        }
-        ctx.stroke();
-    };
-
-    fillInCell(ctx) {
-        if (!this.playableCell00) {
-            this.drawTurn(ctx, this.cell0.cell0, this.cX00);
-        } if (!this.playableCell01) {
-            this.drawTurn(ctx, this.cell0.cell1, this.cX01);
-        } if (!this.playableCell02) {
-            this.drawTurn(ctx, this.cell0.cell2, this.cX02);
-        } if (!this.playableCell03) {
-            this.drawTurn(ctx, this.cell0.cell3, this.cX03);
-        } if (!this.playableCell04) {
-            this.drawTurn(ctx, this.cell0.cell4, this.cX04);
-        } if (!this.playableCell05) {
-            this.drawTurn(ctx, this.cell0.cell5, this.cX05);
-        } if (!this.playableCell06) {
-            this.drawTurn(ctx, this.cell0.cell6, this.cX06);
-        } if (!this.playableCell07) {
-            this.drawTurn(ctx, this.cell0.cell7, this.cX07);
-        } if (!this.playableCell08) {
-            this.drawTurn(ctx, this.cell0.cell8, this.cX08);
-        }
-    };
-
     // draw main board grid
     drawBoard(ctx) {
         // draw big board
@@ -393,7 +652,6 @@ class TicTacToe {
 
     drawInnerCellGrid(ctx, cell, color) {
         setCustomStroke(ctx, color);
-
         ctx.beginPath();
 
         // left vertical line
@@ -414,31 +672,75 @@ class TicTacToe {
         ctx.stroke();
     };
 
-    drawTurn(ctx, cell, X) {
-        setCustomStroke(ctx, "black");
-        ctx.beginPath();
-        if (X === 1) {
-            ctx.moveTo(cell.x + 10, cell.y + 10);
-            ctx.lineTo(cell.x + cell.width - 10, cell.y + cell.height - 10);
-            ctx.moveTo(cell.x + 10, cell.y + cell.height - 10);
-            ctx.lineTo(cell.x + cell.width - 10, cell.y + 10);
-        } else if (X === 0) {
-            let radius = 20;
-            ctx.arc(cell.x + cell.width / 2, cell.y + cell.height / 2, radius, 0, 2 * Math.PI, false);
-        }
-        ctx.stroke();
+
+
+
+    //--------------------ENABLE/ DISABLE GAME CELLS--------------------
+    enableCells() {
+        this.playableCell00 = true;
+        this.playableCell01 = true;
+        this.playableCell02 = true;
+        this.playableCell03 = true;
+        this.playableCell04 = true;
+        this.playableCell05 = true;
+        this.playableCell06 = true;
+        this.playableCell07 = true;
+        this.playableCell08 = true;
+
+        this.playableCell10 = true;
+        this.playableCell11 = true;
+        this.playableCell12 = true;
+        this.playableCell13 = true;
+        this.playableCell14 = true;
+        this.playableCell15 = true;
+        this.playableCell16 = true;
+        this.playableCell17 = true;
+        this.playableCell18 = true;
+
+        this.playableCell20 = true;
+        this.playableCell21 = true;
+        this.playableCell22 = true;
+        this.playableCell23 = true;
+        this.playableCell24 = true;
+        this.playableCell25 = true;
+        this.playableCell26 = true;
+        this.playableCell27 = true;
+        this.playableCell28 = true;
     };
 
-    // player help
-    playAnywhere(ctx) {
-        let playHereBB = new BoundingBox(this.rowX, this.rowY, 600, 600);
-        setRainbowStroke(ctx, playHereBB);
-        ctx.strokeRect(this.rowX, this.rowY, 600, 600);
+    disableCell0() {
+        this.playableCell00 = false;
+        this.playableCell01 = false;
+        this.playableCell02 = false;
+        this.playableCell03 = false;
+        this.playableCell04 = false;
+        this.playableCell05 = false;
+        this.playableCell06 = false;
+        this.playableCell07 = false;
+        this.playableCell08 = false;
     };
 
-    playInCell(ctx, cell, dimension) {
-        let playHereBB = new BoundingBox(cell.x, cell.y, dimension, dimension);
-        setRainbowStroke(ctx, playHereBB);
-        ctx.strokeRect(cell.x, cell.y, dimension, dimension);
+    disableCell1() {
+        this.playableCell10 = false;
+        this.playableCell11 = false;
+        this.playableCell12 = false;
+        this.playableCell13 = false;
+        this.playableCell14 = false;
+        this.playableCell15 = false;
+        this.playableCell16 = false;
+        this.playableCell17 = false;
+        this.playableCell18 = false;
+    };
+
+    disableCell2() {
+        this.playableCell20 = false;
+        this.playableCell21 = false;
+        this.playableCell22 = false;
+        this.playableCell23 = false;
+        this.playableCell24 = false;
+        this.playableCell25 = false;
+        this.playableCell26 = false;
+        this.playableCell27 = false;
+        this.playableCell28 = false;
     };
 }

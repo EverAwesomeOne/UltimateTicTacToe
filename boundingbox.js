@@ -8,6 +8,7 @@ class BoundingBox {
     cell6;
     cell7;
     cell8;
+    win;
 
     constructor(x, y, width, height) {
         Object.assign(this, { x, y, width, height });
