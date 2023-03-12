@@ -101,6 +101,12 @@ class TicTacToe {
         if (this.firstMove) {
             this.playAnywhere(ctx);
         }
+
+
+        this.drawX(ctx, this.cell0.cell0);
+        this.drawX(ctx, this.cell7.cell4);
+        this.drawO(ctx, this.cell1.cell0);
+
     }
 
     // draw main board grid
@@ -124,6 +130,25 @@ class TicTacToe {
 
         // draw inner cells of big board
         this.drawCells(ctx);
+    }
+
+    drawX(ctx, cell) {
+        setCustomStroke(ctx, "black");
+        ctx.beginPath();
+        ctx.moveTo(cell.x + 10, cell.y + 10);
+        ctx.lineTo(cell.x + cell.width - 10, cell.y + cell.height - 10);
+        ctx.moveTo(cell.x + 10, cell.y + cell.height - 10);
+        ctx.lineTo(cell.x + cell.width - 10, cell.y + 10);
+        ctx.stroke();
+    }
+
+    drawO(ctx, cell) {
+        setCustomStroke(ctx, "black");
+
+        let radius = 20;
+        ctx.beginPath();
+        ctx.arc(cell.x + cell.width / 2, cell.y + cell.height / 2, radius, 0, 2 * Math.PI, false);
+        ctx.stroke();
     }
 
     drawCells(ctx) {
