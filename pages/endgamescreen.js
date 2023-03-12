@@ -7,7 +7,7 @@ class EndGameScreen {
     
         // bounding boxes
         this.mouseBB = new BoundingBox(0, 0, 1, 1);
-        this.restartBB = new BoundingBox((720 / 2) - 115, (720 / 2) - 65, 190, 70);
+        this.restartBB = new BoundingBox((PARAMS.CANVAS_WIDTH / 2) - 190 / 2, (PARAMS.CANVAS_HEIGHT / 2) - 90 / 2, 190, 70);
     };
 
     update() {
@@ -39,7 +39,13 @@ class EndGameScreen {
         //title
         ctx.font = "Bold 60px Courier";
         if (this.win) {
-            ctx.fillText("You Win!", PARAMS.CANVAS_WIDTH / 2, 160);
+            let player = "";
+            if (this.game.winningPlayer) {
+                player = "X";
+            } else {
+                player = "O";
+            }
+            ctx.fillText("Player " + player + " Wins!", PARAMS.CANVAS_WIDTH / 2, 160);
         } else {
             ctx.fillText("Oops! Dino Down.", PARAMS.CANVAS_WIDTH / 2, 160);
         }

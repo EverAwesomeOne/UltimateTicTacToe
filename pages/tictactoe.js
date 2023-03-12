@@ -1286,36 +1286,44 @@ class TicTacToe {
         if (((this.cell0.win === 0) && (this.cell1.win === 0) && (this.cell2.win === 0)) || 
             (this.cell0.win && this.cell1.win && this.cell2.win)) {
             this.win = true;
+            this.game.winningPlayer = this.cell0.win;
         }
         if (((this.cell3.win === 0) && (this.cell4.win === 0) && (this.cell5.win === 0)) ||
             (this.cell3.win && this.cell4.win && this.cell5.win)) {
             this.win = true;
+            this.game.winningPlayer = this.cell3.win;
         }
         if (((this.cell6.win === 0) && (this.cell7.win === 0) && (this.cell8.win === 0)) ||
             (this.cell6.win && this.cell7.win && this.cell8.win)) {
             this.win = true;
+            this.game.winningPlayer = this.cell6.win;
         }
         // vert wins
         if (((this.cell0.win === 0) && (this.cell3.win === 0) && (this.cell6.win === 0)) ||
             (this.cell0.win && this.cell3.win && this.cell6.win)) {
             this.win = true;
+            this.game.winningPlayer = this.cell0.win;
         }
         if (((this.cell1.win === 0) && (this.cell4.win === 0) && (this.cell7.win === 0)) ||
             (this.cell1.win && this.cell4.win && this.cell7.win)) {
             this.win = true;
+            this.game.winningPlayer = this.cell1.win;
         }
         if (((this.cell2.win === 0) && (this.cell5.win === 0) && (this.cell8.win === 0)) ||
             (this.cell2.win && this.cell5.win && this.cell8.win)) {
             this.win = true;
+            this.game.winningPlayer = this.cell2.win;
         }
         // // diagonal wins
         if (((this.cell0.win === 0) && (this.cell4.win === 0) && (this.cell8.win === 0)) ||
             (this.cell0.win && this.cell4.win && this.cell8.win)) {
             this.win = true;
+            this.game.winningPlayer = this.cell0.win;
         }
         if (((this.cell6.win === 0) && (this.cell4.win === 0) && (this.cell2.win === 0)) ||
             (this.cell6.win && this.cell4.win && this.cell2.win)) {
             this.win = true;
+            this.game.winningPlayer = this.cell6.win;
         }
     }
     
