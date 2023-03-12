@@ -104,9 +104,23 @@ class TicTacToe {
         this.playableCell28 = true;
     }
 
+    disableCell0() {
+        this.playableCell00 = false;
+        this.playableCell01 = false;
+        this.playableCell02 = false;
+        this.playableCell03 = false;
+        this.playableCell04 = false;
+        this.playableCell05 = false;
+        this.playableCell06 = false;
+        this.playableCell07 = false;
+        this.playableCell08 = false;
+    };
+
     update() {
         // win game
+        this.determineWin();
         // tie
+        this.determineTie();
         // lose game
 
         // play game
@@ -120,58 +134,57 @@ class TicTacToe {
                 // Cell 00
                 if (this.mouseBB.collide(this.cell0.cell0) && this.playableCell00) {
                     this.playableCell00 = false;
-                    this.cXO = this.X;
+                    this.cX00 = this.X;
                     this.turnCount++;
                 }
                 // Cell 01
                 else if (this.mouseBB.collide(this.cell0.cell1) && this.playableCell01) {
                     this.playableCell01 = false;
-                    this.cX1 = this.X;
+                    this.cX01 = this.X;
                     this.turnCount++;
                 }
                 // Cell 02
                 else if (this.mouseBB.collide(this.cell0.cell2) && this.playableCell02) {
                     this.playableCell02 = false;
-                    this.cX2 = this.X;
+                    this.cX02 = this.X;
                     this.turnCount++;
                 }
                 // Cell 03
                 else if (this.mouseBB.collide(this.cell0.cell3) && this.playableCell03) {
                     this.playableCell03 = false;
-                    this.cX3 = this.X;
+                    this.cX03 = this.X;
                     this.turnCount++;
                 }
                 // Cell 04
                 else if (this.mouseBB.collide(this.cell0.cell4) && this.playableCell04) {
                     this.playableCell04 = false;
-                    this.cX4 = this.X;
+                    this.cX04 = this.X;
                     this.turnCount++;
                 }
                 // Cell 05
                 else if (this.mouseBB.collide(this.cell0.cell5) && this.playableCell05) {
                     this.playableCell05 = false;
-                    this.cX5 = this.X;
+                    this.cX05 = this.X;
                     this.turnCount++;
                 }
                 // Cell 06
                 else if (this.mouseBB.collide(this.cell0.cell6) && this.playableCell06) {
                     this.playableCell06 = false;
-                    this.cX6 = this.X;
+                    this.cX06 = this.X;
                     this.turnCount++;
                 }
                 // Cell 07
                 else if (this.mouseBB.collide(this.cell0.cell7) && this.playableCell07) {
                     this.playableCell07 = false;
-                    this.cX7 = this.X;
+                    this.cX07 = this.X;
                     this.turnCount++;
                 }
                 // Cell 08
                 else if (this.mouseBB.collide(this.cell0.cell8) && this.playableCell08) {
                     this.playableCell08 = false;
-                    this.cX8 = this.X;
+                    this.cX08 = this.X;
                     this.turnCount++;
                 }
-                console.log(this.turnCount)
             }
 
             // reset user click
@@ -192,7 +205,7 @@ class TicTacToe {
         } else {
             this.X = 1;
         }
-    }
+    };
 
     setTurnDisplayText() {
         let playerXText = "Player X's Turn!";
@@ -203,7 +216,41 @@ class TicTacToe {
         } else {
             return playerOText;
         }
-    }
+    };
+
+    determineWin() {
+        // horiz wins
+        if (this.cX00 && this.cX01 && this.cX02) {
+            this.winC0 = true;
+        }
+        if (this.cX03 && this.cX04 && this.cX05) {
+            this.winC0 = true;
+        }
+        if (this.cX06 && this.cX07 && this.cX08) {
+            this.winC0 = true;
+        }
+        // vert wins
+        if (this.cX00 && this.cX03 && this.cX06) {
+            this.winC0 = true;
+        }
+        if (this.cX01 && this.cX04 && this.cX07) {
+            this.winC0 = true;
+        }
+        if (this.cX02 && this.cX05 && this.cX08) {
+            this.winC0 = true;
+        }
+        // diagonal wins
+        if (this.cX00 && this.cX04 && this.cX08) {
+            this.winC0 = true;
+        }
+        if (this.cX06 && this.cX04 && this.cX02) {
+            this.winC0 = true;
+        }
+    };
+
+    determineTie() {
+
+    };
 
     draw(ctx) {
         setCustomStroke(ctx, "black");
@@ -217,26 +264,39 @@ class TicTacToe {
             this.playAnywhere(ctx);
         }
 
-        if (!this.playableCell00) {
-            this.drawTurn(ctx, this.cell0.cell0, this.cXO);
-        } if (!this.playableCell01) {
-            this.drawTurn(ctx, this.cell0.cell1, this.cX1);
-        } if (!this.playableCell02) {
-            this.drawTurn(ctx, this.cell0.cell2, this.cX2);
-        } if (!this.playableCell03) {
-            this.drawTurn(ctx, this.cell0.cell3, this.cX3);
-        } if (!this.playableCell04) {
-            this.drawTurn(ctx, this.cell0.cell4, this.cX4);
-        } if (!this.playableCell05) {
-            this.drawTurn(ctx, this.cell0.cell5, this.cX5);
-        } if (!this.playableCell06) {
-            this.drawTurn(ctx, this.cell0.cell6, this.cX6);
-        } if (!this.playableCell07) {
-            this.drawTurn(ctx, this.cell0.cell7, this.cX7);
-        } if (!this.playableCell08) {
-            this.drawTurn(ctx, this.cell0.cell8, this.cX8);
-        }
+        this.fillInCell(ctx);
+        if (this.winC0) {
+            ctx.beginPath();
+            ctx.moveTo(this.cell0.x, this.cell0.y);
+            ctx.lineTo(this.cell0.x + this.cell0.width, this.cell0.y + this.cell0.height);
+            ctx.moveTo(this.cell0.x, this.cell0.y + this.cell0.height);
+            ctx.lineTo(this.cell0.x + this.cell0.width, this.cell0.y);
+            ctx.stroke();
 
+            this.disableCell0();
+        }
+    };
+
+    fillInCell(ctx) {
+        if (!this.playableCell00) {
+            this.drawTurn(ctx, this.cell0.cell0, this.cX00);
+        } if (!this.playableCell01) {
+            this.drawTurn(ctx, this.cell0.cell1, this.cX01);
+        } if (!this.playableCell02) {
+            this.drawTurn(ctx, this.cell0.cell2, this.cX02);
+        } if (!this.playableCell03) {
+            this.drawTurn(ctx, this.cell0.cell3, this.cX03);
+        } if (!this.playableCell04) {
+            this.drawTurn(ctx, this.cell0.cell4, this.cX04);
+        } if (!this.playableCell05) {
+            this.drawTurn(ctx, this.cell0.cell5, this.cX05);
+        } if (!this.playableCell06) {
+            this.drawTurn(ctx, this.cell0.cell6, this.cX06);
+        } if (!this.playableCell07) {
+            this.drawTurn(ctx, this.cell0.cell7, this.cX07);
+        } if (!this.playableCell08) {
+            this.drawTurn(ctx, this.cell0.cell8, this.cX08);
+        }
     };
 
     // draw main board grid
@@ -305,7 +365,6 @@ class TicTacToe {
             ctx.lineTo(cell.x + cell.width - 10, cell.y + cell.height - 10);
             ctx.moveTo(cell.x + 10, cell.y + cell.height - 10);
             ctx.lineTo(cell.x + cell.width - 10, cell.y + 10);
-            ctx.stroke();
         } else if (X === 0) {
             let radius = 20;
             ctx.arc(cell.x + cell.width / 2, cell.y + cell.height / 2, radius, 0, 2 * Math.PI, false);
