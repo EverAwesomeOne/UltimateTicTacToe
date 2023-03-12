@@ -2,8 +2,9 @@ class TicTacToe {
     constructor(game) {
         this.game = game;
 
-        // first move boolean
-        this.firstMove = false;
+        this.turnCount = 1;
+        this.playerTurnX = false;
+        this.playerTurnO = false;
 
         // duplicate code
         this.rowX = (PARAMS.CANVAS_WIDTH - 600) / 2;
@@ -68,21 +69,38 @@ class TicTacToe {
         // play game
         // update if user clicks
         if (this.game.click) {
+            console.log("click");
             // update mouse location
             this.mouseBB = new BoundingBox(this.game.click.x, this.game.click.y, 1, 1);
 
             if (this.mouseBB.collide(this.cell0)) {
+                if (this.mouseBB.collide(this.cell0.cell0)) {
+                    this.turnCount++;
+                    console.log("true");
+                } else if (this.mouseBB.collide(this.cell0.cell1)) {
+                    this.turnCount++;
+                    console.log("true");
+                }
+            }
 
-            } else if (this.mouseBB.collide(this.cell1)) {
+            else if (this.mouseBB.collide(this.cell1)) {
+                this.turnCount++;
+            }
 
-            } else if (this.mouseBB.collide(this.cell2)) {
+            else if (this.mouseBB.collide(this.cell2)) {
+                this.turnCount++;
+            }
 
-            } else if (this.mouseBB.collide(this.cell3)) {
+            else if (this.mouseBB.collide(this.cell3)) {
+                this.turnCount++;
+            }
 
-            } else if (this.mouseBB.collide(this.cell4)) {
+            else if (this.mouseBB.collide(this.cell4)) {
+                this.turnCount++;
+            }
 
-            } else if (this.mouseBB.collide(this.cell5)) {
-
+            else if (this.mouseBB.collide(this.cell5)) {
+                this.turnCount++;
             }
 
             // reset user click
@@ -93,19 +111,34 @@ class TicTacToe {
         if (this.game.mouse) {
             this.mouseBB = new BoundingBox(this.game.mouse.x, this.game.mouse.y, 1, 1);
         }
+
+        // update player's turn
+        if (this.turnCount % 2 === 0) {
+            this.playerTurnO = true;
+        } else {
+            this.playerTurnX = true;
+        }
     }
 
     draw(ctx) {
+        let playerXText = "Player X's Turn!";
+        let playerOText = "Player O's Turn!";
+
         this.drawBoard(ctx);
 
-        if (this.firstMove) {
+        if (this.turnCount === 1) {
+            setCustomStroke(ctx, "black");
             this.playAnywhere(ctx);
+            ctx.fillText(playerXText, PARAMS.CANVAS_WIDTH / 2, PARAMS.CANVAS_HEIGHT - 8);
         }
 
+        this.playInCell(ctx, this.cell0.cell0, 200 / 3)
 
         this.drawX(ctx, this.cell0.cell0);
         this.drawX(ctx, this.cell7.cell4);
         this.drawO(ctx, this.cell1.cell0);
+
+        ctx.strokeRect(this.game.mouse.x, this.game.mouse.y, 1, 1);
 
     }
 
