@@ -150,23 +150,18 @@ class TicTacToe {
                     this.playableCell00 = false;
                     this.cX00 = this.X;
                     this.turnCount++;
-                    console.log(this.X)
                 }
                 // Cell 01
                 else if (this.mouseBB.collide(this.cell0.cell1) && this.playableCell01) {
                     this.playableCell01 = false;
                     this.cX01 = this.X;
                     this.turnCount++;
-                    console.log(this.X)
-
                 }
                 // Cell 02
                 else if (this.mouseBB.collide(this.cell0.cell2) && this.playableCell02) {
                     this.playableCell02 = false;
                     this.cX02 = this.X;
                     this.turnCount++;
-                    console.log(this.X)
-
                 }
                 // Cell 03
                 else if (this.mouseBB.collide(this.cell0.cell3) && this.playableCell03) {
@@ -286,7 +281,13 @@ class TicTacToe {
     };
 
     determineTie() {
-
+        if (this.playableCell00 === false && this.playableCell01 === false && this.playableCell02 === false &&
+            this.playableCell03 === false && this.playableCell04 === false && this.playableCell05 === false &&
+            this.playableCell06 === false && this.playableCell07 === false && this.playableCell08 === false &&
+            !Number.isNaN(this.playableCell00)) {
+            this.tieC0 = true;
+            console.log("tie")
+        }
     };
 
     draw(ctx) {
@@ -311,6 +312,11 @@ class TicTacToe {
         if (this.winC0) {
             this.drawWin(ctx, this.cell0, this.winType);
             this.disableCell0();
+        }
+
+        if (this.tieC0) {
+            this.drawWin(ctx, this.cell0, 0);
+            this.drawWin(ctx, this.cell0, 1);
         }
     };
 
