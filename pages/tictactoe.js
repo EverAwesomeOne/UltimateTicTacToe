@@ -206,6 +206,7 @@ class TicTacToe {
     }
 
     draw(ctx) {
+        setCustomStroke(ctx, "black");
         let turnText = this.setTurnDisplayText();
         ctx.fillText(turnText, PARAMS.CANVAS_WIDTH / 2, PARAMS.CANVAS_HEIGHT - 8);
 
@@ -261,22 +262,6 @@ class TicTacToe {
         this.drawCells(ctx);
     };
 
-    drawTurn(ctx, cell, X) {
-        setCustomStroke(ctx, "black");
-        ctx.beginPath();
-        if (X === 1) {
-            ctx.moveTo(cell.x + 10, cell.y + 10);
-            ctx.lineTo(cell.x + cell.width - 10, cell.y + cell.height - 10);
-            ctx.moveTo(cell.x + 10, cell.y + cell.height - 10);
-            ctx.lineTo(cell.x + cell.width - 10, cell.y + 10);
-            ctx.stroke();
-        } else if (X === 0) {
-            let radius = 20;
-            ctx.arc(cell.x + cell.width / 2, cell.y + cell.height / 2, radius, 0, 2 * Math.PI, false);
-        }
-        ctx.stroke();
-    };
-
     drawCells(ctx) {
         this.drawInnerCellGrid(ctx, this.cell0, "pink");
         this.drawInnerCellGrid(ctx, this.cell1, "red");
@@ -287,7 +272,6 @@ class TicTacToe {
         this.drawInnerCellGrid(ctx, this.cell6, "navy");
         this.drawInnerCellGrid(ctx, this.cell7, "blue");
         this.drawInnerCellGrid(ctx, this.cell8, "purple");
-
     };
 
     drawInnerCellGrid(ctx, cell, color) {
@@ -310,6 +294,22 @@ class TicTacToe {
         ctx.moveTo(cell.x + 10, cell.y + 200 - (200 / 3));
         ctx.lineTo(cell.x + 200 - 10, cell.y + 200 - (200 / 3));
 
+        ctx.stroke();
+    };
+
+    drawTurn(ctx, cell, X) {
+        setCustomStroke(ctx, "black");
+        ctx.beginPath();
+        if (X === 1) {
+            ctx.moveTo(cell.x + 10, cell.y + 10);
+            ctx.lineTo(cell.x + cell.width - 10, cell.y + cell.height - 10);
+            ctx.moveTo(cell.x + 10, cell.y + cell.height - 10);
+            ctx.lineTo(cell.x + cell.width - 10, cell.y + 10);
+            ctx.stroke();
+        } else if (X === 0) {
+            let radius = 20;
+            ctx.arc(cell.x + cell.width / 2, cell.y + cell.height / 2, radius, 0, 2 * Math.PI, false);
+        }
         ctx.stroke();
     };
 

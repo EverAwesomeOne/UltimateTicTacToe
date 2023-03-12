@@ -57,6 +57,5 @@ class HUD {
         }
         ctx.fillText("How To Play", PARAMS.CANVAS_WIDTH - 110, 28);
         ctx.strokeRect(this.howToPlayBB.left, this.howToPlayBB.top, this.howToPlayBB.width, this.howToPlayBB.height);
-
     };
 }
