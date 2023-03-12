@@ -2,6 +2,7 @@ class HUD {
     constructor(game) {
         this.game = game;
 
+        this.hudBB = new BoundingBox(0, 0, 700, 40);
         this.mouseBB = new BoundingBox(0,0,1,1);
         this.resetBB = new BoundingBox(10,10,100,22);
         this.howToPlayBB = new BoundingBox(PARAMS.CANVAS_WIDTH - 210,10,200,22);
@@ -9,7 +10,8 @@ class HUD {
 
     update() {
         // update if user clicks
-        if (this.game.click) {
+        if (this.game.click && this.mouseBB.collide(this.hudBB)) {
+            console.log("HUD " + this.game.click);
             // update mouse location
             this.mouseBB = new BoundingBox(this.game.click.x, this.game.click.y,1,1);
 

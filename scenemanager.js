@@ -23,20 +23,20 @@ class Scenemanager {
             this.game.addEntity(endGame);
         }
         
-        if (this.currentLevel === loseScreen) {
+        else if (this.currentLevel === loseScreen) {
             let endGame = new EndGameScreen(this.game, false);
             this.game.addEntity(endGame);
         }
 
-        if (this.currentLevel === titleScreen) {
+        else if (this.currentLevel === titleScreen) {
             let titleScreen = new TitleScreen(this.game);
             this.game.addEntity(titleScreen);
         }
 
-        if (this.currentLevel === playGame) {
+        else if (this.currentLevel === playGame) {
             let tictactoe = new TicTacToe(this.game);
-
             let hud = new HUD(this.game);
+
             this.game.addEntity(hud);
             this.game.addEntity(tictactoe);
 

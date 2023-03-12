@@ -80,39 +80,39 @@ class GameEngine {
             this.rightclick = getXandY(e);
         });
 
-        function keydownListener (e) {
-            //e.preventDefault();
-            switch (e.code) {
-                case "Space":
-                    that.jump = true;
-                    break;
-                case "KeyD":
-                    that.duck = true;
-                    break;
-            }
-        }
-        function keyUpListener (e) {
-            //e.preventDefault();
-            switch (e.code) {
-                case "Space":
-                    that.jump = false;
-                    break;
-                case "KeyD":
-                    that.duck = false;
-                    break;
-            }
-        }
+        // function keydownListener (e) {
+        //     //e.preventDefault();
+        //     switch (e.code) {
+        //         case "Space":
+        //             that.jump = true;
+        //             break;
+        //         case "KeyD":
+        //             that.duck = true;
+        //             break;
+        //     }
+        // }
+        // function keyUpListener (e) {
+        //     //e.preventDefault();
+        //     switch (e.code) {
+        //         case "Space":
+        //             that.jump = false;
+        //             break;
+        //         case "KeyD":
+        //             that.duck = false;
+        //             break;
+        //     }
+        // }
 
-        that.keydown = keydownListener;
-        that.keyup = keyUpListener;
+        // that.keydown = keydownListener;
+        // that.keyup = keyUpListener;
 
-        this.ctx.canvas.addEventListener("keydown", that.keydown);
-        this.ctx.canvas.addEventListener("keyup", that.keyup);
+        // this.ctx.canvas.addEventListener("keydown", that.keydown);
+        // this.ctx.canvas.addEventListener("keyup", that.keyup);
 
-        document.getElementById("gameWorld").addEventListener('blur', () => {
-            that.inCanvas = false;
-            that.setKeysNotPressed();
-        });
+        // document.getElementById("gameWorld").addEventListener('blur', () => {
+        //     that.inCanvas = false;
+        //     that.setKeysNotPressed();
+        // });
 
     };
 
