@@ -19,20 +19,28 @@ class Scenemanager {
         this.clearEntities();
 
         if (this.currentLevel === winScreen) {
-            this.game.addEntity(new EndGameScreen(this.game, true));
+            let endGame = new EndGameScreen(this.game, true);
+            this.game.addEntity(endGame);
         }
         
         if (this.currentLevel === loseScreen) {
-            this.game.addEntity(new EndGameScreen(this.game, false));
+            let endGame = new EndGameScreen(this.game, false);
+            this.game.addEntity(endGame);
         }
 
         if (this.currentLevel === titleScreen) {
-            this.game.addEntity(new TitleScreen(this.game));
+            let titleScreen = new TitleScreen(this.game);
+            this.game.addEntity(titleScreen);
         }
 
         if (this.currentLevel === playGame) {
-            this.game.addEntity(new HUD(this.game));
-            this.game.addEntity(new TicTacToe(this.game));
+            let tictactoe = new TicTacToe(this.game);
+            tictactoe.firstMove = true;
+
+            let hud = new HUD(this.game);
+            this.game.addEntity(hud);
+            this.game.addEntity(tictactoe);
+
         }
     };
 
@@ -43,4 +51,4 @@ class Scenemanager {
     draw(ctx) {
         // do nothing
     };
-};
+}

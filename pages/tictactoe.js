@@ -97,6 +97,10 @@ class TicTacToe {
 
     draw(ctx) {
         this.drawBoard(ctx);
+
+        if (this.firstMove) {
+            this.playAnywhere(ctx);
+        }
     }
 
     // draw main board grid

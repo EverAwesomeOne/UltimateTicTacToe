@@ -15,7 +15,7 @@ class HowToPlay {
 
             // exit credits screen
             if (this.mouseBB.collide(this.exitBB)) {
-                this.credits = false;
+                this.removeFromWorld = true;
             }
             // reset user click
             this.game.click = null;
@@ -28,21 +28,29 @@ class HowToPlay {
     }
 
     draw(ctx) {
+        setCustomStroke(ctx, "white");
+        ctx.fillRect(0,0,PARAMS.CANVAS_WIDTH,PARAMS.CANVAS_HEIGHT);
+
         // credits screen
         setCustomStroke(ctx, "black");
         ctx.lineWidth = 6;
         ctx.textAlign = "center";
         ctx.font = '45px "Press Start 2P"';
-        ctx.fillText("CREDITS",720 / 2, 100);
+        ctx.fillText("How To Play",720 / 2, 100);
 
         ctx.textAlign = "left";
-        ctx.font = '25px "Press Start 2P"';
+        ctx.font = '20px "Press Start 2P"';
 
-        ctx.fillText("DEVELOPER:", 40, 200);
-        ctx.fillText("\u2615 Chloe Duncan", 40, 240);
-        ctx.fillText("CLASS:", 40, 320);
-        ctx.fillText("\uD83D\uDCBB TCSS 491", 40, 360);
-        ctx.fillText("\u26c4 Winter 2023", 40, 400);
+        ctx.fillText("OBJECTIVE:", 40, 160);
+        ctx.fillText("Win the smaller game boards", 40, 200);
+        ctx.fillText("to win the big game board!", 40, 240);
+
+        ctx.fillText("RULES:", 40, 320);
+        ctx.fillText("Each cell of the smaller game", 40, 360);
+        ctx.fillText("", 40, 400);
+
+        ctx.fillText("CONTROLS:", 40, 480);
+        ctx.fillText("mouse", 40, 520);
 
         // exit button
         setCustomStroke(ctx, "black");

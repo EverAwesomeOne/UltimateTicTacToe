@@ -4,6 +4,7 @@ class HUD {
 
         this.mouseBB = new BoundingBox(0,0,1,1);
         this.resetBB = new BoundingBox(10,10,100,22);
+        this.howToPlayBB = new BoundingBox(PARAMS.CANVAS_WIDTH - 210,10,200,22);
     };
 
     update() {
@@ -15,6 +16,11 @@ class HUD {
             // restart game
             if (this.mouseBB.collide(this.resetBB)) {
                 this.game.camera.loadLevel(titleScreen);
+            }
+
+            else if (this.mouseBB.collide(this.howToPlayBB)) {
+                let howToPlay = new HowToPlay(this.game);
+                this.game.addEntityToTop(howToPlay);
             }
             // reset user click
             this.game.click = null;
@@ -40,5 +46,15 @@ class HUD {
         }
         ctx.fillText("Reset", 60, 28);
         ctx.strokeRect(this.resetBB.left, this.resetBB.top, this.resetBB.width, this.resetBB.height);
+
+        setCustomStroke(ctx, "black");
+
+        // how to play game
+        if (this.mouseBB.collide(this.howToPlayBB)) {
+            setRainbowStroke(ctx, this.howToPlayBB);
+        }
+        ctx.fillText("How To Play", PARAMS.CANVAS_WIDTH - 110, 28);
+        ctx.strokeRect(this.howToPlayBB.left, this.howToPlayBB.top, this.howToPlayBB.width, this.howToPlayBB.height);
+
     };
-};
+}

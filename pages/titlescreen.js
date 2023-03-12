@@ -21,7 +21,8 @@ class TitleScreen {
             // credits screen
             else if (this.mouseBB.collide(this.creditsBB)) {
                 this.removeFromWorld = true;
-                this.game.addEntityToTop(new Credits(this.game));
+                let credits = new Credits(this.game);
+                this.game.addEntityToTop(credits);
             }
             // reset user click
             this.game.click = null;
