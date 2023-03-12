@@ -3,22 +3,15 @@ class TicTacToe {
         this.game = game;
 
         this.turnCount = 1;
-
-        // duplicate code
         this.rowX = (PARAMS.CANVAS_WIDTH - 600) / 2;
         this.rowY = ((PARAMS.CANVAS_HEIGHT - 600) / 2) + 20;  // account for HUD height
 
         // mouseBB
         this.mouseBB = new BoundingBox(0, 0, 1, 1);
-
         // set up game
-        this.setUpGame();
-    };
-
-    setUpGame() {
         this.createBoard();
         this.enableCells();
-    }
+    };
 
     createBoard() {
         // row 1
@@ -92,8 +85,8 @@ class TicTacToe {
         this.playableCell16 = true;
         this.playableCell17 = true;
         this.playableCell18 = true;
-        this.playableCell10 = true;
 
+        this.playableCell20 = true;
         this.playableCell21 = true;
         this.playableCell22 = true;
         this.playableCell23 = true;
@@ -116,14 +109,35 @@ class TicTacToe {
         this.playableCell08 = false;
     };
 
-    update() {
-        // win game
-        this.determineWin();
-        // tie
-        this.determineTie();
-        // lose game
+    disableCell1() {
+        this.playableCell10 = false;
+        this.playableCell11 = false;
+        this.playableCell12 = false;
+        this.playableCell13 = false;
+        this.playableCell14 = false;
+        this.playableCell15 = false;
+        this.playableCell16 = false;
+        this.playableCell17 = false;
+        this.playableCell18 = false;
+    };
 
-        // play game
+    disableCell2() {
+        this.playableCell20 = false;
+        this.playableCell21 = false;
+        this.playableCell22 = false;
+        this.playableCell23 = false;
+        this.playableCell24 = false;
+        this.playableCell25 = false;
+        this.playableCell26 = false;
+        this.playableCell27 = false;
+        this.playableCell28 = false;
+    };
+
+    update() {
+        // determine win, tie, lose
+        this.determineWin();
+        this.determineTie();
+
         // update if user clicks
         if (this.game.click) {
             // update mouse location
@@ -136,18 +150,23 @@ class TicTacToe {
                     this.playableCell00 = false;
                     this.cX00 = this.X;
                     this.turnCount++;
+                    console.log(this.X)
                 }
                 // Cell 01
                 else if (this.mouseBB.collide(this.cell0.cell1) && this.playableCell01) {
                     this.playableCell01 = false;
                     this.cX01 = this.X;
                     this.turnCount++;
+                    console.log(this.X)
+
                 }
                 // Cell 02
                 else if (this.mouseBB.collide(this.cell0.cell2) && this.playableCell02) {
                     this.playableCell02 = false;
                     this.cX02 = this.X;
                     this.turnCount++;
+                    console.log(this.X)
+
                 }
                 // Cell 03
                 else if (this.mouseBB.collide(this.cell0.cell3) && this.playableCell03) {
@@ -219,33 +238,51 @@ class TicTacToe {
     };
 
     determineWin() {
+        // CELL 0
         // horiz wins
-        if (this.cX00 && this.cX01 && this.cX02) {
+        if (((this.cX00 == 0) && (this.cX01 == 0) && (this.cX02 == 0)) || (this.cX00 && this.cX01 && this.cX02)) {
             this.winC0 = true;
+            this.winType = this.cX00;
         }
-        if (this.cX03 && this.cX04 && this.cX05) {
+        if (((this.cX03 == 0) && (this.cX04 == 0) && (this.cX05 == 0)) || (this.cX03 && this.cX04 && this.cX05)) {
             this.winC0 = true;
+            this.winType = this.cX03;
         }
-        if (this.cX06 && this.cX07 && this.cX08) {
+        if (((this.cX06 == 0) && (this.cX07 == 0) && (this.cX08 == 0)) || (this.cX06 && this.cX07 && this.cX08)) {
             this.winC0 = true;
+            this.winType = this.cX06;
         }
         // vert wins
-        if (this.cX00 && this.cX03 && this.cX06) {
+        if (((this.cX00 == 0) && (this.cX03 == 0) && (this.cX06 == 0)) || (this.cX00 && this.cX03 && this.cX06)) {
             this.winC0 = true;
+            this.winType = this.cX00;
         }
-        if (this.cX01 && this.cX04 && this.cX07) {
+        if (((this.cX01 == 0) && (this.cX04 == 0) && (this.cX07 == 0)) || (this.cX01 && this.cX04 && this.cX07)) {
             this.winC0 = true;
+            this.winType = this.cX01;
         }
-        if (this.cX02 && this.cX05 && this.cX08) {
+        if (((this.cX02 == 0) && (this.cX05 == 0) && (this.cX08 == 0)) || (this.cX02 && this.cX05 && this.cX08)) {
             this.winC0 = true;
+            this.winType = this.cX02;
         }
-        // diagonal wins
-        if (this.cX00 && this.cX04 && this.cX08) {
+        // // diagonal wins
+        if (((this.cX00 == 0) && (this.cX04 == 0) && (this.cX08 == 0)) || (this.cX00 && this.cX04 && this.cX08)) {
             this.winC0 = true;
+            this.winType = this.cX00;
         }
-        if (this.cX06 && this.cX04 && this.cX02) {
+        if (((this.cX06 == 0) && (this.cX04 == 0) && (this.cX02 == 0)) || (this.cX06 && this.cX04 && this.cX02)) {
             this.winC0 = true;
+            this.winType = this.cX06;
         }
+
+        // CELL 1
+        // CELL 2
+        // CELL 3
+        // CELL 4
+        // CELL 5
+        // CELL 6
+        // CELL 7
+        // CELL 8
     };
 
     determineTie() {
@@ -253,28 +290,42 @@ class TicTacToe {
     };
 
     draw(ctx) {
+        // draw which player's turn
         setCustomStroke(ctx, "black");
         let turnText = this.setTurnDisplayText();
         ctx.fillText(turnText, PARAMS.CANVAS_WIDTH / 2, PARAMS.CANVAS_HEIGHT - 8);
 
+        // draw gameboard
         this.drawBoard(ctx);
 
+        // on first turn, hint player can go anywhere for first move
         if (this.turnCount === 1) {
             setCustomStroke(ctx, "black");
             this.playAnywhere(ctx);
         }
 
+        // fill cell with user's play
         this.fillInCell(ctx);
-        if (this.winC0) {
-            ctx.beginPath();
-            ctx.moveTo(this.cell0.x, this.cell0.y);
-            ctx.lineTo(this.cell0.x + this.cell0.width, this.cell0.y + this.cell0.height);
-            ctx.moveTo(this.cell0.x, this.cell0.y + this.cell0.height);
-            ctx.lineTo(this.cell0.x + this.cell0.width, this.cell0.y);
-            ctx.stroke();
 
+        // mark large cell if won that cell
+        if (this.winC0) {
+            this.drawWin(ctx, this.cell0, this.winType);
             this.disableCell0();
         }
+    };
+
+    drawWin(ctx, cell, winType) {
+        ctx.beginPath();
+        if (winType) {
+            ctx.moveTo(cell.x, cell.y);
+            ctx.lineTo(cell.x + cell.width, cell.y + cell.height);
+            ctx.moveTo(cell.x, cell.y + cell.height);
+            ctx.lineTo(cell.x + cell.width, cell.y);
+        }  else if (!winType) {
+            let radius = 90;
+            ctx.arc(cell.x + cell.width / 2, cell.y + cell.height / 2, radius, 0, 2 * Math.PI, false);
+        }
+        ctx.stroke();
     };
 
     fillInCell(ctx) {
