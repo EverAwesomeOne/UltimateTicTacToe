@@ -32,7 +32,7 @@ class EndGameScreen {
 
     draw(ctx) {
 
-        setBlackStroke(ctx);
+        setCustomStroke(ctx, "black");
         ctx.lineWidth = 6;
         ctx.textAlign = "center";
 
@@ -45,7 +45,7 @@ class EndGameScreen {
         }
 
         ctx.font = "Bold 35px Courier";
-        setBlackStroke(ctx);
+        setCustomStroke(ctx, "black");
 
         //restart
         if (this.mouseBB.collide(this.restartBB)) {

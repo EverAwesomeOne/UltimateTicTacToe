@@ -39,7 +39,7 @@ class TitleScreen {
         ctx.drawImage(background, 0, 0, PARAMS.CANVAS_WIDTH, PARAMS.CANVAS_HEIGHT);
 
         // display title screen
-        setBlackStroke(ctx);
+        setCustomStroke(ctx, "black");
         ctx.lineWidth = 6;
         ctx.textAlign = "center";
 
@@ -57,7 +57,7 @@ class TitleScreen {
         ctx.fillText("PLAY", 720 / 2, 720 / 2);
         ctx.strokeRect(this.playBB.left, this.playBB.top, this.playBB.width, this.playBB.height);
 
-        setBlackStroke(ctx);
+        setCustomStroke(ctx, "black");
 
         //credits
         if (this.mouseBB.collide(this.creditsBB)) {

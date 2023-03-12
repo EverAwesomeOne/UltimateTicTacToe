@@ -29,7 +29,7 @@ class HowToPlay {
 
     draw(ctx) {
         // credits screen
-        setBlackStroke(ctx);
+        setCustomStroke(ctx, "black");
         ctx.lineWidth = 6;
         ctx.textAlign = "center";
         ctx.font = '45px "Press Start 2P"';
@@ -45,7 +45,7 @@ class HowToPlay {
         ctx.fillText("\u26c4 Winter 2023", 40, 400);
 
         // exit button
-        setBlackStroke(ctx);
+        setCustomStroke(ctx, "black");
         if (this.mouseBB.collide(this.exitBB)) {
             setRainbowStroke(ctx, this.exitBB);
         }

@@ -1,17 +1,12 @@
 class HUD {
     constructor(game) {
         this.game = game;
-        this.score = 0;
-        this.resetGame = false;
 
         this.mouseBB = new BoundingBox(0,0,1,1);
         this.resetBB = new BoundingBox(10,10,100,22);
     };
 
     update() {
-        // update score
-        //this.score += 5;
-
         // update if user clicks
         if (this.game.click) {
             // update mouse location
@@ -31,16 +26,13 @@ class HUD {
     };
 
     draw(ctx) {
-        setBlackStroke(ctx);
+        setCustomStroke(ctx, "black");
         ctx.lineWidth = 4;
         ctx.textAlign = "center";
         ctx.font = '15px "Press Start 2P"';
 
         // HUD box
         ctx.strokeRect(0, 0, 700, 40);
-
-        // score
-        ctx.fillText("Score " + this.score, 600, 28);
 
         // reset game
         if (this.mouseBB.collide(this.resetBB)) {

@@ -70,10 +70,10 @@ const getDistance = (p1, p2) => {
 // TEXT //
 //------//
 
-function setBlackStroke(ctx) {
-    ctx.strokeStyle = "black";
-    ctx.fillStyle = "black";
-};
+function setCustomStroke(ctx, color) {
+    ctx.strokeStyle = color;
+    ctx.fillStyle = color;
+}
 
 function setRainbowStroke(ctx, boundingbox) {
     let BB = boundingbox;
@@ -92,4 +92,4 @@ function setRainbowStroke(ctx, boundingbox) {
 
     ctx.strokeStyle = rainbow;
     ctx.fillStyle = rainbow;
-};
+}
