@@ -1283,6 +1283,7 @@ class TicTacToe {
     };
 
     drawTurn(ctx, cell, X) {
+        ctx.lineWidth = 4;
         setCustomStroke(ctx, "black");
         ctx.beginPath();
         if (X === 1) {
@@ -1877,6 +1878,7 @@ class TicTacToe {
 
     // player help
     playAnywhere(ctx) {
+        ctx.lineWidth = 8;
         this.disableHints();
         let playHereBB = new BoundingBox(this.rowX, this.rowY, 600, 600);
         setRainbowStroke(ctx, playHereBB, true);
@@ -1884,6 +1886,7 @@ class TicTacToe {
     };
 
     playInCell(ctx, cell, dimension) {
+        ctx.lineWidth = 8;
         let playHereBB = new BoundingBox(cell.x, cell.y, dimension, dimension);
         setRainbowStroke(ctx, playHereBB, true);
         ctx.strokeRect(cell.x, cell.y, dimension, dimension);
@@ -1965,7 +1968,6 @@ class TicTacToe {
         ctx.lineTo(this.rowX + 600, this.rowY + 400);
         ctx.stroke();
 
-        ctx.lineWidth = 4;
         // draw inner cells of big board
         this.drawCells(ctx);
     };
@@ -1983,6 +1985,7 @@ class TicTacToe {
     };
 
     drawInnerCellGrid(ctx, cell, color) {
+        ctx.lineWidth = 4;
         setCustomStroke(ctx, color);
         ctx.beginPath();
 
