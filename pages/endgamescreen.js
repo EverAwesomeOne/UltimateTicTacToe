@@ -38,7 +38,7 @@ class EndGameScreen {
         //title
         ctx.font = "Bold 60px Courier";
         if (this.win) {
-            let player = "";
+            let player;
             if (this.game.winningPlayer) {
                 player = "X";
             } else {

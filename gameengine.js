@@ -44,7 +44,7 @@ class GameEngine {
     startInput() {
         // TODO: remove that = this and use the function declaration
         // show below with the getXandY method
-        var that = this;
+        let that = this;
         const getXandY = e => ({
             x: e.clientX - this.ctx.canvas.getBoundingClientRect().left,
             y: e.clientY - this.ctx.canvas.getBoundingClientRect().top
