@@ -31,7 +31,6 @@ class EndGameScreen {
     };
 
     draw(ctx) {
-
         setCustomStroke(ctx, "black");
         ctx.lineWidth = 6;
         ctx.textAlign = "center";
@@ -55,9 +54,9 @@ class EndGameScreen {
 
         //restart
         if (this.mouseBB.collide(this.restartBB)) {
-            setRainbowStroke(ctx, this.restartBB);
+            setRainbowStroke(ctx, this.restartBB, true);
         }
         ctx.fillText("RESTART", PARAMS.CANVAS_WIDTH / 2, PARAMS.CANVAS_HEIGHT / 2);
         ctx.strokeRect(this.restartBB.left, this.restartBB.top, this.restartBB.width, this.restartBB.height);
     };
-};
+}

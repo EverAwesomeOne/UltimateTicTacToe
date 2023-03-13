@@ -44,7 +44,7 @@ class HUD {
 
         // reset game
         if (this.mouseBB.collide(this.resetBB)) {
-            setRainbowStroke(ctx, this.resetBB);
+            setRainbowStroke(ctx, this.resetBB, true);
         }
         ctx.fillText("Reset", 60, 28);
         ctx.strokeRect(this.resetBB.left, this.resetBB.top, this.resetBB.width, this.resetBB.height);
@@ -53,7 +53,7 @@ class HUD {
 
         // how to play game
         if (this.mouseBB.collide(this.howToPlayBB)) {
-            setRainbowStroke(ctx, this.howToPlayBB);
+            setRainbowStroke(ctx, this.howToPlayBB, true);
         }
         ctx.fillText("How To Play", PARAMS.CANVAS_WIDTH - 110, 28);
         ctx.strokeRect(this.howToPlayBB.left, this.howToPlayBB.top, this.howToPlayBB.width, this.howToPlayBB.height);

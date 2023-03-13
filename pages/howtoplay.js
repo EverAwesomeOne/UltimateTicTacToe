@@ -65,14 +65,13 @@ class HowToPlay {
         ctx.fillText("on-screen.", 40, 620);
 
         // exit button
-        setCustomStroke(ctx, "black");
-        if (this.mouseBB.collide(this.exitBB)) {
-            setRainbowStroke(ctx, this.exitBB);
-        }
-
+        //setCustomStroke(ctx, "black");
         ctx.lineWidth = 6;
         ctx.textAlign = "center";
         ctx.font = '25px "Press Start 2P"';
+        if (this.mouseBB.collide(this.exitBB)) {
+            setRainbowStroke(ctx, this.exitBB, true);
+        }
         ctx.fillText("EXIT", PARAMS.CANVAS_WIDTH / 2, PARAMS.CANVAS_HEIGHT - 30);
         ctx.strokeRect(this.exitBB.left, this.exitBB.top, this.exitBB.width, this.exitBB.height);
     }

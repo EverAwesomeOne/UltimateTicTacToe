@@ -7,20 +7,20 @@ class TicTacToe {
         this.rowY = ((PARAMS.CANVAS_HEIGHT - 600) / 2) + 20;  // account for HUD height
 
         this.win = false;
+        this.showChatBox = false;
 
-        // mouseBB
+        // BBs
         this.mouseBB = new BoundingBox(0, 0, 1, 1);
+        this.exitChatBB = new BoundingBox(PARAMS.CANVAS_WIDTH / 2 - 65, ((2 * PARAMS.CANVAS_HEIGHT) / 3) - 72,130,50);
         // set up game
         this.createBoard();
-        this.enableCells();
     };
 
     update() {
         // determine whole game board win, tie
         this.determineGameWin();
         if (this.win) {
-            console.log("win!")
-            this.removeFromWorld;
+            this.removeFromWorld = true;
             this.game.camera.loadLevel(winScreen);
         }
 
@@ -42,6 +42,14 @@ class TicTacToe {
             this.updateCell6();
             this.updateCell7();
             this.updateCell8();
+
+            // chatBox
+            if (this.showChatBox) {
+                if (this.mouseBB.collide(this.exitChatBB)) {
+                    this.showChatBox = false;
+                    this.enableCells();
+                }
+            }
 
             // reset user click
             this.game.click = null;
@@ -784,6 +792,27 @@ class TicTacToe {
         } else if (this.tieC8 && !this.winC8) {
             this.drawWin(ctx, this.cell8, 0);
             this.drawWin(ctx, this.cell8, 1);
+        }
+
+        setCustomStroke(ctx, "black");
+
+        // showChat
+        if (this.showChatBox) {
+            ctx.fillRect(0, PARAMS.CANVAS_HEIGHT / 3, PARAMS.CANVAS_WIDTH, PARAMS.CANVAS_HEIGHT / 3);
+
+            setCustomStroke(ctx, "white");
+            ctx.fillText("Welcome to Ultimate Tic Tac Toe!", PARAMS.CANVAS_WIDTH / 2, PARAMS.CANVAS_HEIGHT / 3 + 40);
+            ctx.fillText("A helpful hint: follow the highlighted", PARAMS.CANVAS_WIDTH / 2, PARAMS.CANVAS_HEIGHT / 3 + 60);
+            ctx.fillText("rainbow boxes to know where to play your", PARAMS.CANVAS_WIDTH / 2, PARAMS.CANVAS_HEIGHT / 3 + 80);
+            ctx.fillText("next move.", PARAMS.CANVAS_WIDTH / 2, PARAMS.CANVAS_HEIGHT / 3 + 100);
+            ctx.fillText("Also, make sure to read the \"How To Play\" ", PARAMS.CANVAS_WIDTH / 2, PARAMS.CANVAS_HEIGHT / 3 + 120);
+            ctx.fillText("instructions in upper right-hand corner.", PARAMS.CANVAS_WIDTH / 2, PARAMS.CANVAS_HEIGHT / 3 + 140);
+
+            if (this.mouseBB.collide(this.exitChatBB)) {
+                setRainbowStroke(ctx, this.exitChatBB, true);
+            }
+            ctx.fillText("CONTINUE", PARAMS.CANVAS_WIDTH / 2, ((2 * PARAMS.CANVAS_HEIGHT) / 3) - 40);
+            ctx.strokeRect(this.exitChatBB.x, this.exitChatBB.y, this.exitChatBB.width, this.exitChatBB.height);
         }
     };
 
@@ -1829,13 +1858,13 @@ class TicTacToe {
     playAnywhere(ctx) {
         this.disableHints();
         let playHereBB = new BoundingBox(this.rowX, this.rowY, 600, 600);
-        setRainbowStroke(ctx, playHereBB);
+        setRainbowStroke(ctx, playHereBB, true);
         ctx.strokeRect(this.rowX, this.rowY, 600, 600);
     };
 
     playInCell(ctx, cell, dimension) {
         let playHereBB = new BoundingBox(cell.x, cell.y, dimension, dimension);
-        setRainbowStroke(ctx, playHereBB);
+        setRainbowStroke(ctx, playHereBB, true);
         ctx.strokeRect(cell.x, cell.y, dimension, dimension);
     };
 

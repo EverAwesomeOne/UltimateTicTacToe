@@ -4,8 +4,8 @@ class TitleScreen {
         
         // bounding boxes
         this.mouseBB = new BoundingBox(0,0,1,1);
-        this.playBB = new BoundingBox((700 / 2) - 55,(700 / 2) - 38,125,70);
-        this.creditsBB = new BoundingBox((700 / 2) - 90,(700 / 2) + 160,200,70);
+        this.playBB = new BoundingBox((PARAMS.CANVAS_WIDTH / 2) - 62,(PARAMS.CANVAS_HEIGHT / 2) - 50,125,70);
+        this.creditsBB = new BoundingBox((PARAMS.CANVAS_WIDTH / 2) - 100,(PARAMS.CANVAS_HEIGHT / 2) + 150,200,70);
     };
 
     update() {
@@ -53,18 +53,18 @@ class TitleScreen {
 
         //play
         if (this.mouseBB.collide(this.playBB)) {
-            setRainbowStroke(ctx, this.playBB);
+            setRainbowStroke(ctx, this.playBB, true);
         }
-        ctx.fillText("PLAY", 720 / 2, 720 / 2);
+        ctx.fillText("PLAY", PARAMS.CANVAS_WIDTH / 2, PARAMS.CANVAS_HEIGHT / 2);
         ctx.strokeRect(this.playBB.left, this.playBB.top, this.playBB.width, this.playBB.height);
 
         setCustomStroke(ctx, "black");
 
         //credits
         if (this.mouseBB.collide(this.creditsBB)) {
-            setRainbowStroke(ctx, this.creditsBB);
+            setRainbowStroke(ctx, this.creditsBB, true);
         }
-        ctx.fillText("CREDITS", 720 / 2, 720 / 2 + 200);
+        ctx.fillText("CREDITS", PARAMS.CANVAS_WIDTH / 2, PARAMS.CANVAS_HEIGHT / 2 + 200);
         ctx.strokeRect(this.creditsBB.left, this.creditsBB.top, this.creditsBB.width, this.creditsBB.height);
     };
 }

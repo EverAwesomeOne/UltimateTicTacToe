@@ -35,6 +35,7 @@ class Scenemanager {
 
         else if (this.currentLevel === playGame) {
             let tictactoe = new TicTacToe(this.game);
+            tictactoe.showChatBox = true;
             let hud = new HUD(this.game);
 
             this.game.addEntity(hud);

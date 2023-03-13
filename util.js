@@ -75,7 +75,7 @@ function setCustomStroke(ctx, color) {
     ctx.fillStyle = color;
 }
 
-function setRainbowStroke(ctx, boundingbox) {
+function setRainbowStroke(ctx, boundingbox, fill) {
     let BB = boundingbox;
     let coordX = BB.left;
     let coordY = BB.top;
@@ -90,6 +90,10 @@ function setRainbowStroke(ctx, boundingbox) {
     rainbow.addColorStop(0.8, "indigo");
     rainbow.addColorStop(1.0, "violet");
 
-    ctx.strokeStyle = rainbow;
-    ctx.fillStyle = rainbow;
+    if (fill) {
+        ctx.strokeStyle = rainbow;
+        ctx.fillStyle = rainbow;
+    } else {
+        ctx.strokeStyle = rainbow;
+    }
 }
