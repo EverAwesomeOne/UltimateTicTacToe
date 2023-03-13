@@ -19,9 +19,13 @@ class TicTacToe {
     update() {
         // determine whole game board win, tie
         this.determineGameWin();
+        this.determineGameTie();
         if (this.win) {
-            this.removeFromWorld = true;
             this.game.camera.loadLevel(winScreen);
+        }
+
+        if (this.tie) {
+            this.game.camera.loadLevel(tieScreen);
         }
 
         // determine win, tie on individual cells
@@ -717,6 +721,7 @@ class TicTacToe {
             this.disableCell0();
             this.cell0.win = this.winType0;
         } else if (this.tieC0 && !this.winC0) {
+            this.disableCell0();
             this.drawWin(ctx, this.cell0, 0);
             this.drawWin(ctx, this.cell0, 1);
 
@@ -727,6 +732,7 @@ class TicTacToe {
             this.disableCell1();
             this.cell1.win = this.winType1;
         } else if (this.tieC1 && !this.winC1) {
+            this.disableCell1();
             this.drawWin(ctx, this.cell1, 0);
             this.drawWin(ctx, this.cell1, 1);
         }
@@ -736,6 +742,7 @@ class TicTacToe {
             this.disableCell2();
             this.cell2.win = this.winType2;
         } else if (this.tieC2 && !this.winC2) {
+            this.disableCell2();
             this.drawWin(ctx, this.cell2, 0);
             this.drawWin(ctx, this.cell2, 1);
         }
@@ -745,6 +752,7 @@ class TicTacToe {
             this.disableCell3();
             this.cell3.win = this.winType3;
         } else if (this.tieC3 && !this.winC3) {
+            this.disableCell3();
             this.drawWin(ctx, this.cell3, 0);
             this.drawWin(ctx, this.cell3, 1);
         }
@@ -754,6 +762,7 @@ class TicTacToe {
             this.disableCell4();
             this.cell4.win = this.winType4;
         } else if (this.tieC4 && !this.winC4) {
+            this.disableCell4();
             this.drawWin(ctx, this.cell4, 0);
             this.drawWin(ctx, this.cell4, 1);
         }
@@ -763,6 +772,7 @@ class TicTacToe {
             this.disableCell5();
             this.cell5.win = this.winType5;
         } else if (this.tieC5 && !this.winC5) {
+            this.disableCell5();
             this.drawWin(ctx, this.cell5, 0);
             this.drawWin(ctx, this.cell5, 1);
         }
@@ -772,6 +782,7 @@ class TicTacToe {
             this.disableCell6();
             this.cell6.win = this.winType6;
         } else if (this.tieC6 && !this.winC6) {
+            this.disableCell6();
             this.drawWin(ctx, this.cell6, 0);
             this.drawWin(ctx, this.cell6, 1);
         }
@@ -781,6 +792,7 @@ class TicTacToe {
             this.disableCell7();
             this.cell7.win = this.winType7;
         } else if (this.tieC7 && !this.winC7) {
+            this.disableCell7();
             this.drawWin(ctx, this.cell7, 0);
             this.drawWin(ctx, this.cell7, 1);
         }
@@ -790,6 +802,7 @@ class TicTacToe {
             this.disableCell8();
             this.cell8.win = this.winType8;
         } else if (this.tieC8 && !this.winC8) {
+            this.disableCell8();
             this.drawWin(ctx, this.cell8, 0);
             this.drawWin(ctx, this.cell8, 1);
         }
@@ -1355,6 +1368,14 @@ class TicTacToe {
             this.game.winningPlayer = this.cell6.win;
         }
     }
+
+    determineGameTie() {
+        if (this.playableCell0 === 0 && this.playableCell1 === 0 && this.playableCell2 === 0 &&
+            this.playableCell3 === 0 && this.playableCell4 === 0 && this.playableCell5 === 0 &&
+            this.playableCell6 === 0 && this.playableCell7 === 0 && this.playableCell8 === 0) {
+            this.tie = true;
+        }
+    };
     
     determineWin() {
         // CELL 0
@@ -2087,6 +2108,7 @@ class TicTacToe {
     };
 
     disableCell0() {
+        this.playableCell0 = 0;
         this.playableCell00 = false;
         this.playableCell01 = false;
         this.playableCell02 = false;
@@ -2099,6 +2121,7 @@ class TicTacToe {
     };
 
     disableCell1() {
+        this.playableCell1 = 0;
         this.playableCell10 = false;
         this.playableCell11 = false;
         this.playableCell12 = false;
@@ -2111,6 +2134,7 @@ class TicTacToe {
     };
 
     disableCell2() {
+        this.playableCell2 = 0;
         this.playableCell20 = false;
         this.playableCell21 = false;
         this.playableCell22 = false;
@@ -2123,6 +2147,7 @@ class TicTacToe {
     };
 
     disableCell3() {
+        this.playableCell3 = 0;
         this.playableCell30 = false;
         this.playableCell31 = false;
         this.playableCell32 = false;
@@ -2135,6 +2160,7 @@ class TicTacToe {
     };
 
     disableCell4() {
+        this.playableCell4 = 0;
         this.playableCell40 = false;
         this.playableCell41 = false;
         this.playableCell42 = false;
@@ -2147,6 +2173,7 @@ class TicTacToe {
     };
 
     disableCell5() {
+        this.playableCell5 = 0;
         this.playableCell50 = false;
         this.playableCell51 = false;
         this.playableCell52 = false;
@@ -2159,6 +2186,7 @@ class TicTacToe {
     };
 
     disableCell6() {
+        this.playableCell6 = 0;
         this.playableCell60 = false;
         this.playableCell61 = false;
         this.playableCell62 = false;
@@ -2171,6 +2199,7 @@ class TicTacToe {
     };
 
     disableCell7() {
+        this.playableCell7 = 0;
         this.playableCell70 = false;
         this.playableCell71 = false;
         this.playableCell72 = false;
@@ -2183,6 +2212,7 @@ class TicTacToe {
     };
 
     disableCell8() {
+        this.playableCell8 = 0;
         this.playableCell80 = false;
         this.playableCell81 = false;
         this.playableCell82 = false;

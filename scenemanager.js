@@ -23,7 +23,7 @@ class Scenemanager {
             this.game.addEntity(endGame);
         }
         
-        else if (this.currentLevel === loseScreen) {
+        else if (this.currentLevel === tieScreen) {
             let endGame = new EndGameScreen(this.game, false);
             this.game.addEntity(endGame);
         }

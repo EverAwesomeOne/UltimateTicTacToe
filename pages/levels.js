@@ -10,6 +10,6 @@ let winScreen = {
     label: "win"
 };
 
-let loseScreen = {
-    label: "lose"
+let tieScreen = {
+    label: "tie"
 };
