@@ -1949,6 +1949,7 @@ class TicTacToe {
     drawBoard(ctx) {
         // draw big board
         setCustomStroke(ctx, "black");
+        ctx.lineWidth = 8;
         ctx.beginPath();
         // left vertical line
         ctx.moveTo(this.rowX + 200, this.rowY);
@@ -1964,6 +1965,7 @@ class TicTacToe {
         ctx.lineTo(this.rowX + 600, this.rowY + 400);
         ctx.stroke();
 
+        ctx.lineWidth = 4;
         // draw inner cells of big board
         this.drawCells(ctx);
     };
